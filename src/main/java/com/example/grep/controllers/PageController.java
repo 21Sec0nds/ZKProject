@@ -45,9 +45,9 @@ public class PageController {
         return "presupuestos";
     }
 
-    @GetMapping("/tipo-estado-liqui")
+    @GetMapping("/tipoliquid")
     public String tipoEstadoLiqui() {
-        return "tipo-estado-liqui";
+        return "tipoliquid";
     }
 
     @GetMapping("/usuarios")

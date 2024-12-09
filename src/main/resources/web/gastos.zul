@@ -1,0 +1,31 @@
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window title="Gastos" border="normal" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm')  @init('com.example.grep.viewModels.GastosVM')">
+
+        Lista de gastos
+        <listbox width="100%" rows="8" emptyMessage="No hay gastos disponibles" model="@bind(vm.gastos)">
+            <listhead>
+                <listheader label="ID" />
+                <listheader label="Departamentos" />
+                <listheader label="Finalidad" />
+                <listheader label="Mes" />
+                <listheader label="Ano" />
+                <listheader label="Importe" />
+                <listheader label="Description" />
+                <listheader label="Justificante" />
+            </listhead>
+            <template name="model">
+                <listitem>
+                    <listcell label="@bind(each.idGasto)" />
+                    <listcell label="@bind(each.idDepartamento)" />
+                    <listcell label="@bind(each.idFinalidad)" />
+                    <listcell label="@bind(each.Mes)" />
+                    <listcell label="@bind(each.Ano)" />
+                    <listcell label="@bind(each.Importe)" />
+                    <listcell label="@bind(each.Description)" />
+                    <listcell label="@bind(each.Justificante)" />
+                </listitem>
+            </template>
+        </listbox>
+    </window>
+</zk>

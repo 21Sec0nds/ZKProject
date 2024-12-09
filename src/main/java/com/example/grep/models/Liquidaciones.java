@@ -13,8 +13,8 @@ public class Liquidaciones {
     @Column(name = "ID_LIQUIDACION", nullable = false)
     private Integer id_liquidacion;
 
-    @Column(name = "AÑO", nullable = false)
-    private Integer año;
+    @Column(name = "ANIO", nullable = false)
+    private Integer anio;
 
     @Column(name = "MES", nullable = false)
     private Integer mes;
@@ -32,8 +32,8 @@ public class Liquidaciones {
     public Integer getIdLiquidacion() { return id_liquidacion; }
     public void setIdLiquidacion(Integer id_liquidacion) { this.id_liquidacion = id_liquidacion; }
 
-    public Integer getAño() { return año; }
-    public void setAño(Integer año) { this.año = año; }
+    public Integer getAnio() { return anio; }
+    public void setAnio(Integer anio) { this.anio = anio; }
 
     public Integer getMes() { return mes; }
     public void setMes(Integer mes) { this.mes = mes; }

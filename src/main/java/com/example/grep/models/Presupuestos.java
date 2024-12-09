@@ -10,7 +10,7 @@ public class Presupuestos {
     @Column(name = "ID_PRESUPUESTO", nullable = false)
     private Integer id_presupuesto;
 
-    @Column(name = "ANIO" ,nullable = false)
+    @Column(name = "ANIO", nullable = false)
     private Integer anio;
 
     @ManyToOne
@@ -30,7 +30,7 @@ public class Presupuestos {
     public void setIdPresupuesto(Integer id_presupuesto) { this.id_presupuesto = id_presupuesto; }
 
     public Integer getAnio() { return anio; }
-    public void setAnio(Integer año) { this.anio = año; }
+    public void setAnio(Integer anio) { this.anio = anio; }
 
     public Departamentos getIdDepartamento() { return id_departamento; }
     public void setIdDepartamento(Departamentos id_departamento) { this.id_departamento = id_departamento; }

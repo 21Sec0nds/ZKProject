@@ -22,7 +22,7 @@ public class Gastos {
     @Column(name = "MES", nullable = false)
     private Integer mes;
 
-    @Column(name = "AÑO", nullable = false)
+    @Column(name = "ANIO", nullable = false)
     private Integer anio;
 
     @Column(name = "IMPORTE", nullable = false)

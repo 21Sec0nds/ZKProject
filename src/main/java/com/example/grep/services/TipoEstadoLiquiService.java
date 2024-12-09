@@ -7,8 +7,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service("EstadoLiqui")
 public class TipoEstadoLiquiService {
+
     @Autowired
     private ITipoEstadoLiqui tipoEstadoLiquiRepository;
 

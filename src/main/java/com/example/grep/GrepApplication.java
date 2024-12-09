@@ -11,7 +11,9 @@ public class GrepApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GrepApplication.class, args);
-		System.out.print("hola ");
+		System.out.print("============================\n" +
+				"SERVER READY \n" +
+				"============================ ");
 	}
 
 }

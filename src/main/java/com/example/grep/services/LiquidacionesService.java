@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service("liquidacionService")
 public class LiquidacionesService {
     @Autowired
     private ILiquidaciones liquidacionesRepository;

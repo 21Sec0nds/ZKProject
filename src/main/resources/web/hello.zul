@@ -21,6 +21,7 @@
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <window title="Usuarios" border="normal">
       <label value="Hola Mundo" />
+
     </window>
 </zk>
 
