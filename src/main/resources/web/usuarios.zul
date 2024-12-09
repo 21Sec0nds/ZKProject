@@ -1,0 +1,44 @@
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window title="Usuarios" border="normal" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('com.example.grep.viewModels.UsuariosVM')">
+
+        <!-- Lista de usuarios -->
+        <listbox width="100%" rows="7" emptyMessage="No hay usuarios disponibles" model="@bind(vm.usuarios)">
+            <listhead>
+                <listheader label="ID" />
+                <listheader label="Nombre" />
+                <listheader label="Contraseña" />
+            </listhead>
+            <template name="model">
+                <listitem>
+                    <listcell label="@bind(each.idUsuario)" />
+                    <listcell label="@bind(each.nombreUsuario)" />
+                    <listcell label="@bind(each.password)" />
+                </listitem>
+            </template>
+        </listbox>
+
+        <!-- Formulario para crear un nuevo usuario -->
+        <vlayout spacing="10px" style="margin-top: 20px;">
+            <label value="Crear nuevo usuario" style="font-weight: bold;" />
+            <grid>
+                <rows>
+                    <row>
+                        <label value="ID Usuario:" />
+                        <textbox value="@bind(vm.idUsuario)" constraint="no empty: Intruduzca un Id de Usuario" />
+                    </row>
+                    <row>
+                        <label value="Nombre:" />
+                        <textbox value="@bind(vm.nombreUsuario)" constraint="no empty: Intruduzca un Nombre"/>
+                    </row>
+                    <row>
+                        <label value="Contraseña:" />
+                        <textbox type="password" value="@bind(vm.password)" constraint="no empty: Intruduzca una Contraseña"/>
+                    </row>
+                </rows>
+            </grid>
+            <button id="btnCrear" label="Guardar Usuario" onClick="@command('guardarUsuario')" />
+        </vlayout>
+
+    </window>
+</zk>

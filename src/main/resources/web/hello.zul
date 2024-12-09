@@ -1,0 +1,7 @@
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window title="Pagina principal" border="normal" action="show: slideDown" visible="true">
+      <label value="Hola Mundo" />
+
+    </window>
+</zk>
+
