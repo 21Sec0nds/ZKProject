@@ -10,14 +10,18 @@
                 <listheader label="ID Departamento" />
                 <listheader label="ID Finalidad" />
                 <listheader label="Presupuesto" />
+                <listheader label="Actions" />
             </listhead>
             <template name="model">
-                <listitem>
+                <listitem value="@bind(each)">
                     <listcell label="@bind(each.idPresupuesto)" />
                     <listcell label="@bind(each.anio)" />
                     <listcell label="@bind(each.idDepartamento.idDepartamento)" />
                     <listcell label="@bind(each.idFinalidad.idFinalidad)" />
                     <listcell label="@bind(each.presupuesto)" />
+                    <listcell>
+                        <button label="Info" onClick="@command('showDetails', presupuestoId = each.idPresupuesto)" />
+                    </listcell>
                 </listitem>
             </template>
         </listbox>
@@ -37,7 +41,7 @@
                 </template>
             </listbox>
 
-            <!-- Tabla detalle departamentos-->
+            <!-- Tabla detalle departamentos -->
             <listbox width="100%" rows="1" emptyMessage="No hay elementos relacionados" model="@bind(vm.detalleFinalidades)">
                 <listhead>
                     <listheader label="ID Finalidad" />
@@ -51,9 +55,6 @@
                 </template>
             </listbox>
         </hbox>
-
-        <!-- Example Button to Trigger Redirect -->
-        <button label="Redirect" onClick='Executions.sendRedirect("/details");' />
 
     </window>
 </zk>

@@ -110,6 +110,13 @@ public class PresupuestosVM {
         }
     }
 
+    @Command
+    public void showDetails(@BindingParam("presupuestoId") int presupuestoId) {
+        // Redirect to the details page with presupuestoId as a parameter
+        Executions.sendRedirect("/details?presupuestoId=" + presupuestoId);
+    }
+
+
     public Presupuestos getSelectedItem() {
         return selectedItem;
     }

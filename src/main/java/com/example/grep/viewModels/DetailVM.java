@@ -15,7 +15,6 @@ public class DetailVM {
 
     @Init
     public void init(@ExecutionArgParam("presupuestoId") int presupuestoId) {
-        // Set the passed presupuestoId and fetch the corresponding Presupuesto
         this.presupuestoId = presupuestoId;
         presupuesto = presupuestosService.getPresupuestoById(presupuestoId);
     }
