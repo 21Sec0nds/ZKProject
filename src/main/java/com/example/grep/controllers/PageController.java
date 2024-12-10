@@ -20,6 +20,11 @@ public class PageController {
         return "hello";
     }
 
+    @GetMapping("/details")
+    public String details() {
+        return "details";
+    }
+
     @GetMapping("/departamentos")
     public String departamentos() {
         return "departamentos";
@@ -42,6 +47,7 @@ public class PageController {
 
     @GetMapping("/presupuestos")
     public String presupuestos() {
+
         return "presupuestos";
     }
 

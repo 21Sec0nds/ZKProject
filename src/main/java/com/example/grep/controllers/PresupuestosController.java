@@ -14,7 +14,7 @@ public class PresupuestosController {
     @Autowired
     private PresupuestosService presupuestosService;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Presupuestos> getAllPresupuestos() {
         return presupuestosService.getAllPresupuestos();
     }

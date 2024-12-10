@@ -23,11 +23,6 @@ public class UsuariosVM {
     private String nombreUsuario;
     private String password;
 
-    @Init
-    public void init() {
-        usuarios = new ListModelList<>(usuarioService.getAllUsuarios());
-    }
-
     public List<Usuarios> getUsuarios() {
         return usuarios;
     }
