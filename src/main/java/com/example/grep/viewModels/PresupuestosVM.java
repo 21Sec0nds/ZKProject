@@ -113,8 +113,7 @@ public class PresupuestosVM {
 
     @Command
     public void showDetails(@BindingParam("presupuestoId") int presupuestoId) {
-        // Redirect to the details page with presupuestoId as a parameter
-        Executions.sendRedirect("/details.zul?presupuestoId=" + presupuestoId);
+        Executions.sendRedirect("/api/presupuestos/details?presupuestoId=" + presupuestoId);
     }
 
 

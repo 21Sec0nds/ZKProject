@@ -27,9 +27,13 @@ public class PresupuestosController {
 
         Presupuestos presupuesto = presupuestosService.getPresupuestoById(presupuestoId);
 
+        // Check if presupuesto is null
+        if (presupuesto != null) {
+            Executions.sendRedirect("/api/presupuestos/details.zul?presupuestoId=" + presupuesto.getIdPresupuesto());
+        } else {
 
-        Executions.sendRedirect("/details.zul?presupuestoId=" + presupuesto.getIdPresupuesto());
-
+            Executions.sendRedirect("/api/presupuestos/all");
+        }
     }
 
     @GetMapping("/{id}")
