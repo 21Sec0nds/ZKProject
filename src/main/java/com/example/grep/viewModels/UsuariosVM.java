@@ -2,6 +2,7 @@ package com.example.grep.viewModels;
 
 import com.example.grep.models.Usuarios;
 import com.example.grep.services.UsuariosService;
+
 import org.zkoss.bind.annotation.*;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.ListModelList;
@@ -21,11 +22,6 @@ public class UsuariosVM {
     private String idUsuario;
     private String nombreUsuario;
     private String password;
-
-    @Init
-    public void init() {
-        usuarios = new ListModelList<>(usuarioService.getAllUsuarios());
-    }
 
     public List<Usuarios> getUsuarios() {
         return usuarios;
@@ -53,6 +49,11 @@ public class UsuariosVM {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Init
+    public void init() {
+        usuarios = new ListModelList<>(usuarioService.getAllUsuarios());
     }
 
     @Command

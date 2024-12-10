@@ -1,0 +1,11 @@
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window title="Detalles de Presupuesto" border="normal" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('com.example.grep.viewModels.DetailVM')">
+        <vlayout>
+            <label value="ID Presupuesto: @bind(vm.presupuesto.idPresupuesto)" />
+            <label value="Año: @bind(vm.presupuesto.anio)" />
+            <label value="ID Departamento: @bind(vm.presupuesto.idDepartamento.idDepartamento)" />
+            <label value="ID Finalidad: @bind(vm.presupuesto.idFinalidad.idFinalidad)" />
+            <label value="Presupuesto: @bind(vm.presupuesto.presupuesto)" />
+        </vlayout>
+    </window>
+</zk>

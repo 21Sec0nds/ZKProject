@@ -1,5 +1,25 @@
+<!--<zk xmlns="http://www.zkoss.org/2005/zul">-->
+<!--    <window title="Usuarios" border="normal" viewModel="@id('vm') @init('com.example.grep.controllers.UsuarioViewModel')">-->
+<!--        <listbox id="usuarios" width="100%" rows="8" emptyMessage="No hay usuarios crack" model="@load(vm.usuariosModel)">-->
+<!--            <listhead>-->
+<!--                <listheader label="ID" />-->
+<!--                <listheader label="Nombre" />-->
+<!--                <listheader label="Contraseña" />-->
+<!--            </listhead>-->
+<!--            <template name="model">-->
+<!--                <listitem>-->
+<!--                    <listcell label="@load(each.idUsuario)" />-->
+<!--                    <listcell label="@load(each.nombreUsuario)" />-->
+<!--                    <listcell label="@load(each.password)" />-->
+<!--                </listitem>-->
+<!--            </template>-->
+<!--        </listbox>-->
+
+<!--    </window>-->
+<!--</zk>-->
+
 <zk xmlns="http://www.zkoss.org/2005/zul">
-    <window title="Pagina principal" border="normal" action="show: slideDown" visible="true">
+    <window title="Usuarios" border="normal">
       <label value="Hola Mundo" />
 
     </window>

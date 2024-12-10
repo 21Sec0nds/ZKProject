@@ -22,4 +22,5 @@ public class Departamentos {
 
     public String getNombreDepartamento() { return nombre_departamento; }
     public void setNombreDepartamento(String nombre_departamento) { this.nombre_departamento = nombre_departamento; }
+
 }

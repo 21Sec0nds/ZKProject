@@ -2,6 +2,8 @@ package com.example.grep.models;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "USUARIOS")
 public class Usuarios {

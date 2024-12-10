@@ -14,7 +14,7 @@ public class LiquidacionesController {
     @Autowired
     private LiquidacionesService liquidacionesService;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Liquidaciones> getAllLiquidaciones() {
         return liquidacionesService.getAllLiquidaciones();
     }

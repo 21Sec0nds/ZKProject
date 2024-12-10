@@ -1,0 +1,59 @@
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window title="Presupuestos" border="normal" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('com.example.grep.viewModels.PresupuestosVM')">
+
+        <!-- Lista de usuarios -->
+        <listbox width="100%" rows="8" emptyMessage="No hay usuarios disponibles" model="@bind(vm.listaPresupuestos)" selectedItem="@save(vm.selectedItem)">
+            <listhead>
+                <listheader label="ID" />
+                <listheader label="Año" />
+                <listheader label="ID Departamento" />
+                <listheader label="ID Finalidad" />
+                <listheader label="Presupuesto" />
+            </listhead>
+            <template name="model">
+                <listitem>
+                    <listcell label="@bind(each.idPresupuesto)" />
+                    <listcell label="@bind(each.anio)" />
+                    <listcell label="@bind(each.idDepartamento.idDepartamento)" />
+                    <listcell label="@bind(each.idFinalidad.idFinalidad)" />
+                    <listcell label="@bind(each.presupuesto)" />
+                </listitem>
+            </template>
+        </listbox>
+
+        <hbox style="margin-top: 20px">
+            <!-- Tablas detalle -->
+            <listbox width="100%" rows="1" emptyMessage="No hay elementos relacionados" model="@bind(vm.detalleDepartamentos)">
+                <listhead>
+                    <listheader label="ID Departamento" />
+                    <listheader label="Nombre Departamento" />
+                </listhead>
+                <template name="model">
+                    <listitem>
+                        <listcell label="@load(vm.selectedItem.idDepartamento.idDepartamento)" />
+                        <listcell label="@load(vm.selectedItem.idDepartamento.nombreDepartamento)" />
+                    </listitem>
+                </template>
+            </listbox>
+
+            <!-- Tabla detalle departamentos-->
+            <listbox width="100%" rows="1" emptyMessage="No hay elementos relacionados" model="@bind(vm.detalleFinalidades)">
+                <listhead>
+                    <listheader label="ID Finalidad" />
+                    <listheader label="Nombre Finalidad" />
+                </listhead>
+                <template name="model">
+                    <listitem>
+                        <listcell label="@load(vm.selectedItem.idFinalidad.idFinalidad)" />
+                        <listcell label="@load(vm.selectedItem.idFinalidad.nombreFinalidad)" />
+                    </listitem>
+                </template>
+            </listbox>
+        </hbox>
+
+        <!-- Example Button to Trigger Redirect -->
+        <button label="Redirect" onClick='Executions.sendRedirect("/details");' />
+
+    </window>
+</zk>
