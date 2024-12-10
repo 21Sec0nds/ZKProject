@@ -1,3 +1,4 @@
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <window title="Detalles de Presupuesto" border="normal" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('com.example.grep.viewModels.DetailVM')">
         <vlayout>

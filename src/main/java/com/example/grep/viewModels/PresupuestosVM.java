@@ -103,17 +103,18 @@ public class PresupuestosVM {
             // Redirect to the details page and pass the presupuestoId
             HashMap<String, Object> params = new HashMap<>();
             params.put("presupuestoId", selectedItem.getIdPresupuesto());
-            Executions.createComponents("/details.zul", null, params);
+            Executions.createComponents("/details.zul", null, params); // Load details.zul dynamically
         } else {
             detalleDepartamentos = new ArrayList<>();
             detalleFinalidades = new ArrayList<>();
         }
     }
 
+
     @Command
     public void showDetails(@BindingParam("presupuestoId") int presupuestoId) {
         // Redirect to the details page with presupuestoId as a parameter
-        Executions.sendRedirect("/details?presupuestoId=" + presupuestoId);
+        Executions.sendRedirect("/details.zul?presupuestoId=" + presupuestoId);
     }
 
 

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
+@Service("presupuestosService")
 public class PresupuestosService {
 
     @Autowired
@@ -30,10 +30,11 @@ public class PresupuestosService {
         presupuestoRepository.deleteById(id);
     }
 
-    public List<Presupuestos>getPresupuestoByFinalidad(String findalidad){
+    public List<Presupuestos> getPresupuestoByFinalidad(String finalidad) {
         List<Presupuestos> lista = getAllPresupuestos();
         return lista.stream()
-                .filter( presupuesto -> presupuesto.getIdFinalidad().getIdFinalidad().equals(findalidad))
+                .filter(presupuesto -> presupuesto.getIdFinalidad().getIdFinalidad().equals(finalidad))
                 .collect(Collectors.toList());
     }
 }
+

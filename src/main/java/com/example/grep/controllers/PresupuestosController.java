@@ -5,6 +5,8 @@ import com.example.grep.services.PresupuestosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import org.zkoss.zk.ui.Executions;
+
 import java.util.List;
 
 @RestController
@@ -17,6 +19,17 @@ public class PresupuestosController {
     @GetMapping("/all")
     public List<Presupuestos> getAllPresupuestos() {
         return presupuestosService.getAllPresupuestos();
+    }
+
+    // ZK redirection
+    @GetMapping("/details")
+    public void details(@RequestParam("presupuestoId") int presupuestoId) {
+
+        Presupuestos presupuesto = presupuestosService.getPresupuestoById(presupuestoId);
+
+
+        Executions.sendRedirect("/details.zul?presupuestoId=" + presupuesto.getIdPresupuesto());
+
     }
 
     @GetMapping("/{id}")
