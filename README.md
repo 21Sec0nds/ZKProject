@@ -1,6 +1,6 @@
 # ZK Framework with Spring Boot
 
-This project demonstrates the integration of ZK Framework with Spring Boot for a simple web application. The goal is to test the behavior of ZK and explore its troubleshooting and structure.
+Just a project to test the behavior and get a look at ZK.
 
 ## Project Setup
 
