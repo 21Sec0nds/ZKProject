@@ -8,7 +8,7 @@ This project has different pages displaying data from different databases and ea
 
 ### Prerequisites
 
-- Java 17 [`SDK`] or later
+- Java 17 [`SDK`]
 - Maven
 - Spring Boot
 - ZK Framework
