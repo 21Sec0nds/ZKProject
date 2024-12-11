@@ -2,9 +2,9 @@
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <window title="Presupuestos" border="normal" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('com.example.grep.viewModels.PresupuestosVM')">
 
-        <!-- Lista de usuarios -->
-        <listbox width="100%" rows="8" emptyMessage="No hay usuarios disponibles" model="@bind(vm.listaPresupuestos)" selectedItem="@save(vm.selectedItem)">
-            <listhead>
+        <!-- Lista de Presupuestos -->
+        <listbox width="100%" rows="8" emptyMessage="No hay presupuestos disponibles" model="@bind(vm.listaPresupuestos)">
+        <listhead>
                 <listheader label="ID" />
                 <listheader label="Año" />
                 <listheader label="ID Departamento" />
@@ -20,37 +20,38 @@
                     <listcell label="@bind(each.idFinalidad.idFinalidad)" />
                     <listcell label="@bind(each.presupuesto)" />
                     <listcell>
-                        <button label="Info" onClick="@command('showDetails', presupuestoId = each.idPresupuesto)" />
+                        <button label="Info" onClick="@command('showDetails', presupuestoId=each.idPresupuesto)" />
+
                     </listcell>
                 </listitem>
             </template>
         </listbox>
 
         <hbox style="margin-top: 20px">
-            <!-- Tablas detalle -->
-            <listbox width="100%" rows="1" emptyMessage="No hay elementos relacionados" model="@bind(vm.detalleDepartamentos)">
+            <!-- Detalles de Departamento -->
+            <listbox width="100%" rows="1" emptyMessage="No hay departamentos relacionados" model="@bind(vm.detalleDepartamentos)">
                 <listhead>
                     <listheader label="ID Departamento" />
                     <listheader label="Nombre Departamento" />
                 </listhead>
                 <template name="model">
                     <listitem>
-                        <listcell label="@load(vm.selectedItem.idDepartamento.idDepartamento)" />
-                        <listcell label="@load(vm.selectedItem.idDepartamento.nombreDepartamento)" />
+                        <listcell label="@bind(each.idDepartamento.idDepartamento)" />
+                        <listcell label="@bind(each.idDepartamento.nombreDepartamento)" />
                     </listitem>
                 </template>
             </listbox>
 
-            <!-- Tabla detalle departamentos -->
-            <listbox width="100%" rows="1" emptyMessage="No hay elementos relacionados" model="@bind(vm.detalleFinalidades)">
+            <!-- Detalles de Finalidad -->
+            <listbox width="100%" rows="1" emptyMessage="No hay finalidades relacionadas" model="@bind(vm.detalleFinalidades)">
                 <listhead>
                     <listheader label="ID Finalidad" />
                     <listheader label="Nombre Finalidad" />
                 </listhead>
                 <template name="model">
                     <listitem>
-                        <listcell label="@load(vm.selectedItem.idFinalidad.idFinalidad)" />
-                        <listcell label="@load(vm.selectedItem.idFinalidad.nombreFinalidad)" />
+                        <listcell label="@bind(each.idFinalidad.idFinalidad)" />
+                        <listcell label="@bind(each.idFinalidad.nombreFinalidad)" />
                     </listitem>
                 </template>
             </listbox>

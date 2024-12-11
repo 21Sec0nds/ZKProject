@@ -10,20 +10,17 @@ public class DetailVM {
     @WireVariable
     private PresupuestosService presupuestosService;
 
-    private Presupuestos presupuesto;
-    private int presupuestoId;
 
+    private Presupuestos presupuesto;
 
     @Init
     public void init(@ExecutionParam("presupuestoId") int presupuestoId) {
-        this.presupuestoId = presupuestoId;
+
+        presupuesto = presupuestosService.getPresupuestoById(presupuestoId);
     }
 
     public Presupuestos getPresupuesto() {
         return presupuesto;
     }
 
-    public int getPresupuestoId() {
-        return presupuestoId;
-    }
 }

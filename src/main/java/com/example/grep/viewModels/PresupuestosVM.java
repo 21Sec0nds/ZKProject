@@ -17,6 +17,7 @@ public class PresupuestosVM {
 
     @WireVariable
     private PresupuestosService presupuestosService;
+
     private List<Presupuestos> listaPresupuestos;
     private Presupuestos selectedItem;
     private List<Departamentos> detalleDepartamentos;
@@ -83,30 +84,37 @@ public class PresupuestosVM {
     @Init
     public void init() {
         listaPresupuestos = new ListModelList<>(presupuestosService.getAllPresupuestos());
-
-        // Log the loaded presupuestos
-        System.out.println("Loaded presupuestos: " + listaPresupuestos);
-
+        detalleDepartamentos = new ArrayList<>();
+        detalleFinalidades = new ArrayList<>();
         if (listaPresupuestos.isEmpty()) {
-            System.out.println("No presupuestos found. Redirecting to noPresupuestosPage.zul");
             Executions.sendRedirect("/noPresupuestosPage.zul");
         }
     }
 
-    @NotifyChange({"detalleDepartamentos", "detalleFinalidades"})
-    public void setSelectedItem(Presupuestos selectedItem) {
-        this.selectedItem = selectedItem;
+    @Command
+    public void showDetails(@BindingParam("presupuestoId") int presupuestoId) {
+        Presupuestos selectedPresupuesto = listaPresupuestos.stream()
+                .filter(p -> p.getIdPresupuesto() == presupuestoId)
+                .findFirst()
+                .orElse(null);
 
-        if (selectedItem != null) {
-            detalleDepartamentos = List.of(selectedItem.getIdDepartamento());
-            detalleFinalidades = List.of(selectedItem.getIdFinalidad());
+        detalleDepartamentos = new ArrayList<>();
+        detalleFinalidades = new ArrayList<>();
+
+        if (selectedPresupuesto != null) {
+            if (selectedPresupuesto.getIdDepartamento() != null) {
+                detalleDepartamentos.add(selectedPresupuesto.getIdDepartamento());
+            }
+            if (selectedPresupuesto.getIdFinalidad() != null) {
+                detalleFinalidades.add(selectedPresupuesto.getIdFinalidad());
+            }
 
             HashMap<String, Object> params = new HashMap<>();
-            params.put("presupuestoId", selectedItem.getIdPresupuesto()); // Pass presupuestoId
-            Executions.createComponents("/presupuestos/details.zul", null, params); // Dynamically load details.zul
-        } else {
-            detalleDepartamentos = new ArrayList<>();
-            detalleFinalidades = new ArrayList<>();
+            params.put("presupuestoId", presupuestoId);
+            params.put("presupuesto", selectedPresupuesto);
+
+            Executions.sendRedirect("/presupuestos/details?presupuestoId=" + presupuestoId);
+
         }
     }
 
@@ -114,5 +122,9 @@ public class PresupuestosVM {
 
     public Presupuestos getSelectedItem() {
         return selectedItem;
+    }
+
+    public void setSelectedItem(Presupuestos selectedItem) {
+        this.selectedItem = selectedItem;
     }
 }

@@ -1,7 +1,7 @@
 package com.example.grep.controllers;
 
-import ch.qos.logback.core.model.Model;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,7 +15,6 @@ public class PageController {
     public String homepage() {
         return "redirect:/usuarios";
     }
-
 
     @GetMapping("/hello")
     public String hello() {
@@ -44,13 +43,13 @@ public class PageController {
 
     @GetMapping("/presupuestos")
     public String presupuestos() {
-
         return "presupuestos";
     }
 
     @GetMapping("/presupuestos/details")
-    public String presupuestosDetails(){
-        return "details"; // Return the name of the view (details)
+    public String presupuestosDetails(@RequestParam("presupuestoId") int presupuestoId, Model model) {
+        model.addAttribute("presupuestoId", presupuestoId);
+        return "details";
     }
 
     @GetMapping("/tipoliquid")

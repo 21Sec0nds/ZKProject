@@ -1,3 +1,18 @@
-<window title="Details" viewModel="@id('vm') @init('com.example.grep.viewModels.DetailsVM')">
-    <label value="Presupuesto ID: ${vm.presupuestoId}" />
-</window>
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window title="Presupuesto Details" border="normal">
+
+        <listbox width="100%" rows="8" emptyMessage="No hay presupuestos disponibles" model="@bind(vm.listaPresupuestos)">
+            <listhead>
+                <listheader label="ID" />
+
+            </listhead>
+            <template name="model">
+                <listitem value="@bind(each)">
+                    <listcell label="@bind(each.vm.presupuesto.idPresupuesto)" />
+
+                </listitem>
+            </template>
+        </listbox>
+
+    </window>
+</zk>
