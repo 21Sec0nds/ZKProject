@@ -2,6 +2,8 @@
 
 Just a project to test the behavior and get a look at ZK.
 
+This project has different pages displaying data from different databases and each laber requires a redirection button to navigate to another page showing all related data. 
+
 ## Project Setup
 
 ### Prerequisites
@@ -23,3 +25,5 @@ Just a project to test the behavior and get a look at ZK.
 
 > [!WARNING]
 > Before you start working with it, you need to know that this is the most trouble-causing framework(imho) ive seen before. Take care, and god bless you.
+
+
