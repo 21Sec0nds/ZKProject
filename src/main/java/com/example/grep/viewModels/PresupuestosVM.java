@@ -84,8 +84,11 @@ public class PresupuestosVM {
     public void init() {
         listaPresupuestos = new ListModelList<>(presupuestosService.getAllPresupuestos());
 
-        // Example condition to redirect if no presupuestos available
+        // Log the loaded presupuestos
+        System.out.println("Loaded presupuestos: " + listaPresupuestos);
+
         if (listaPresupuestos.isEmpty()) {
+            System.out.println("No presupuestos found. Redirecting to noPresupuestosPage.zul");
             Executions.sendRedirect("/noPresupuestosPage.zul");
         }
     }
@@ -94,27 +97,19 @@ public class PresupuestosVM {
     public void setSelectedItem(Presupuestos selectedItem) {
         this.selectedItem = selectedItem;
 
-        // Actualiza las listas detalle
         if (selectedItem != null) {
-            // Carga los detalles relacionados con el presupuesto seleccionado
             detalleDepartamentos = List.of(selectedItem.getIdDepartamento());
             detalleFinalidades = List.of(selectedItem.getIdFinalidad());
 
-            // Redirect to the details page and pass the presupuestoId
             HashMap<String, Object> params = new HashMap<>();
-            params.put("presupuestoId", selectedItem.getIdPresupuesto());
-            Executions.createComponents("/details.zul", null, params); // Load details.zul dynamically
+            params.put("presupuestoId", selectedItem.getIdPresupuesto()); // Pass presupuestoId
+            Executions.createComponents("/presupuestos/details.zul", null, params); // Dynamically load details.zul
         } else {
             detalleDepartamentos = new ArrayList<>();
             detalleFinalidades = new ArrayList<>();
         }
     }
 
-
-    @Command
-    public void showDetails(@BindingParam("presupuestoId") int presupuestoId) {
-        Executions.sendRedirect("/api/presupuestos/details?presupuestoId=" + presupuestoId);
-    }
 
 
     public Presupuestos getSelectedItem() {
