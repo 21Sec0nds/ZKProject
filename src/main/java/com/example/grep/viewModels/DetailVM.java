@@ -2,6 +2,7 @@ package com.example.grep.viewModels;
 
 import com.example.grep.models.Gastos;
 import com.example.grep.models.Presupuestos;
+import com.example.grep.services.GastosService;
 import com.example.grep.services.PresupuestosService;
 import org.zkoss.bind.annotation.*;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
@@ -13,7 +14,8 @@ public class DetailVM {
 
     @WireVariable
     private PresupuestosService presupuestosService;
-
+    @WireVariable
+    private GastosService gastosService;
 
     private Presupuestos presupuesto;
 
@@ -26,9 +28,14 @@ public class DetailVM {
     @Init
     public void init(@ExecutionParam("presupuestoId") int presupuestoId) {
         presupuesto = presupuestosService.getPresupuestoById(presupuestoId);
-        Gastos gastos = new Gastos();
-        gastos.setAnio(2004);
-        detalleGastos.add(gastos);
+
+        if (presupuesto != null) {
+            detalleGastos = gastosService.getGastosByFilters(
+                    presupuesto.getIdDepartamento() != null ? presupuesto.getIdDepartamento().getIdDepartamento() : null,
+                    presupuesto.getIdFinalidad() != null ? presupuesto.getIdFinalidad().getIdFinalidad() : null,
+                    presupuesto.getAnio()
+            );
+        }
     }
 
     public Presupuestos getPresupuesto() {
