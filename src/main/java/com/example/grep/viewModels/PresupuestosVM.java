@@ -2,7 +2,9 @@ package com.example.grep.viewModels;
 
 import com.example.grep.models.Departamentos;
 import com.example.grep.models.Finalidades;
+import com.example.grep.models.Gastos;
 import com.example.grep.models.Presupuestos;
+import com.example.grep.services.GastosService;
 import com.example.grep.services.PresupuestosService;
 import org.zkoss.bind.annotation.*;
 import org.zkoss.zk.ui.Executions;
@@ -18,6 +20,8 @@ public class PresupuestosVM {
 
     @WireVariable
     private PresupuestosService presupuestosService;
+    @WireVariable
+    private GastosService gastosService;
 
     private List<Presupuestos> listaPresupuestos;
     private Presupuestos selectedItem;
@@ -101,45 +105,36 @@ public class PresupuestosVM {
 
         detalleDepartamentos = new ArrayList<>();
         detalleFinalidades = new ArrayList<>();
+        List<Gastos> detalleGastos = new ArrayList<>();
 
-        if(selectedPresupuesto != null){
-            if(selectedPresupuesto.getIdDepartamento() != null){
+        if (selectedPresupuesto != null) {
+            if (selectedPresupuesto.getIdDepartamento() != null) {
                 detalleDepartamentos.add(selectedPresupuesto.getIdDepartamento());
             }
+            if (selectedPresupuesto.getIdFinalidad() != null) {
+                detalleFinalidades.add(selectedPresupuesto.getIdFinalidad());
+            }
+
+
+            detalleGastos = gastosService.getGastosByFilters(
+                    selectedPresupuesto.getIdDepartamento().getIdDepartamento(),
+                    selectedPresupuesto.getIdFinalidad().getIdFinalidad(),
+                    selectedPresupuesto.getAnio()
+            );
+
+            HashMap<String, Object> params = new HashMap<>();
+            params.put("presupuestoId", presupuestoId);
+            params.put("detalleDepartamentos", detalleDepartamentos);
+            params.put("detalleFinalidades", detalleFinalidades);
+            params.put("detalleGastos", detalleGastos);
+
+            Executions.sendRedirect("/presupuestos/details?presupuestoId=" + presupuestoId);
         }
-
-        if (selectedPresupuesto.getIdFinalidad() != null) {
-            detalleFinalidades.add(selectedPresupuesto.getIdFinalidad());
-        }
-
-        if( selectedPresupuesto.getIdDepartamento() != null){
-            List<Departamentos> departamentosRealcionados = listaPresupuestos.stream()
-                    .map(Presupuestos::getIdDepartamento)
-                    .filter(d -> d != null && d.getNombreDepartamento().equalsIgnoreCase(selectedPresupuesto.getIdDepartamento().getNombreDepartamento()))
-                    .distinct()
-                    .collect(Collectors.toList());
-
-            detalleDepartamentos.addAll(departamentosRealcionados);
-        }
-
-        if(selectedPresupuesto.getIdFinalidad() != null){
-            List<Finalidades> finalidadesRelacionadas = listaPresupuestos.stream()
-                    .map(Presupuestos::getIdFinalidad)
-                    .filter(f -> f != null && f.getNombreFinalidad().equalsIgnoreCase(selectedPresupuesto.getIdFinalidad().getNombreFinalidad()))
-                    .distinct()
-                    .collect(Collectors.toList());
-
-            detalleFinalidades.addAll(finalidadesRelacionadas);
-        }
-
-        HashMap<String, Object> params = new HashMap<>();
-        params.put("presupuestoId", presupuestoId);
-        params.put("presupuesto", selectedPresupuesto);
-        params.put("detalleDepartamentos", detalleDepartamentos);
-        params.put("detalleFinalidades", detalleFinalidades);
-
-        Executions.sendRedirect("/presupuestos/details?presupuestoId=" + presupuestoId);
     }
+
+
+
+
 
 
 

@@ -1,6 +1,8 @@
 package com.example.grep.services;
 
+import com.example.grep.interfaces.IGastos;
 import com.example.grep.interfaces.IPresupuesto;
+import com.example.grep.models.Gastos;
 import com.example.grep.models.Presupuestos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,9 @@ public class PresupuestosService {
 
     @Autowired
     private IPresupuesto presupuestoRepository;
+
+    @Autowired
+    private IGastos gastoRepository;
 
     public List<Presupuestos> getAllPresupuestos() {
         return presupuestoRepository.findAll();
@@ -33,8 +38,12 @@ public class PresupuestosService {
     public List<Presupuestos> getPresupuestoByFinalidad(String finalidad) {
         List<Presupuestos> lista = getAllPresupuestos();
         return lista.stream()
-                .filter(presupuesto -> presupuesto.getIdFinalidad().getIdFinalidad().equals(finalidad))
+                .filter(presupuesto -> presupuesto.getIdFinalidad().getIdFinalidad() == finalidad)
                 .collect(Collectors.toList());
     }
+
+
+
+
 }
 

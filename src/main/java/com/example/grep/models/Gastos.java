@@ -101,4 +101,6 @@ public class Gastos {
     public void setJustificante(byte[] justificante) {
         this.justificante = justificante;
     }
+
+
 }

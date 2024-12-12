@@ -51,7 +51,7 @@ public class FinalidadesVM {
 
         // Actualiza la lista
         if (selectedItem != null) {
-            detallePresupuestos = presupuestosService.getPresupuestoByFinalidad(selectedItem.getIdFinalidad());
+            detallePresupuestos = presupuestosService.getPresupuestoByFinalidad(String.valueOf(selectedItem.getIdFinalidad()));
         } else {
             detallePresupuestos = new ArrayList<>();
         }

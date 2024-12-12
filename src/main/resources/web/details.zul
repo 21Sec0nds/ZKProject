@@ -18,13 +18,36 @@
             </columns>
             <rows>
                 <row>
-                    <label value="@bind(vm.presupuesto.idPresupuesto)" />
-                    <label value="@bind(vm.presupuesto.anio)" />
-                    <label value="@bind(vm.presupuesto.idDepartamento.idDepartamento)" />
-                    <label value="@bind(vm.presupuesto.idDepartamento.nombreDepartamento)" />
-                    <label value="@bind(vm.presupuesto.idFinalidad.idFinalidad)" />
-                    <label value="@bind(vm.presupuesto.idFinalidad.nombreFinalidad)" />
-                    <label value="@bind(vm.presupuesto.presupuesto)" />
+                    <textbox value="@bind(vm.presupuesto.idPresupuesto)"/>
+                    <textbox value="@bind(vm.presupuesto.anio)" />
+                    <textbox value="@bind(vm.presupuesto.idDepartamento.idDepartamento)" />
+                    <textbox value="@bind(vm.presupuesto.idDepartamento.nombreDepartamento)" />
+                    <textbox value="@bind(vm.presupuesto.idFinalidad.idFinalidad)" />
+                    <textbox value="@bind(vm.presupuesto.idFinalidad.nombreFinalidad)" />
+                    <textbox value="@bind(vm.presupuesto.presupuesto)" />
+                </row>
+            </rows>
+        </grid>
+
+
+        <!--Gastos-->
+        <label value="Gastos Details" style="font-weight: bold; margin-bottom: 10px;" />
+
+        <grid width="100%" emptyMessage="No hay gastos disponibles">
+            <columns>
+                <column label="ID Gasto" />
+                <column label="Mes" />
+                <column label="Año" />
+                <column label="Importe" />
+                <column label="Descripción" />
+            </columns>
+            <rows>
+                <row forEach="${vm.detalleGastos}">
+                    <label value="${each.idGasto}" />
+                    <label value="${each.mes}" />
+                    <label value="${each.anio}" />
+                    <label value="${each.importe}" />
+                    <label value="${each.descripcion}" />
                 </row>
             </rows>
         </grid>
