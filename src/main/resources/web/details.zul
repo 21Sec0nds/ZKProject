@@ -1,18 +1,20 @@
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
 <zk xmlns="http://www.zkoss.org/2005/zul">
-    <window title="Presupuesto Details" border="normal">
+    <window title="Presupuesto Details" border="normal"
+            apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.example.grep.viewModels.DetailVM')">
 
-        <listbox width="100%" rows="8" emptyMessage="No hay presupuestos disponibles" model="@bind(vm.listaPresupuestos)">
-            <listhead>
-                <listheader label="ID" />
+        <label value="Presupuesto Details" style="font-weight: bold; margin-bottom: 10px;" />
 
-            </listhead>
-            <template name="model">
-                <listitem value="@bind(each)">
-                    <listcell label="@bind(each.vm.presupuesto.idPresupuesto)" />
-
-                </listitem>
-            </template>
-        </listbox>
-
+        <grid width="100%" emptyMessage="No hay presupuestos disponibles">
+            <columns>
+                <column label="ID" />
+            </columns>
+            <rows>
+                <row>
+                    <label value="@bind(vm.presupuesto.idPresupuesto)" />
+                </row>
+            </rows>
+        </grid>
     </window>
 </zk>

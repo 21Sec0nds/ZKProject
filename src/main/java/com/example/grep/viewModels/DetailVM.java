@@ -15,7 +15,6 @@ public class DetailVM {
 
     @Init
     public void init(@ExecutionParam("presupuestoId") int presupuestoId) {
-
         presupuesto = presupuestosService.getPresupuestoById(presupuestoId);
     }
 
