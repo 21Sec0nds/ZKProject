@@ -9,10 +9,22 @@
         <grid width="100%" emptyMessage="No hay presupuestos disponibles">
             <columns>
                 <column label="ID" />
+                <column label="Año" />
+                <column label="ID Departamento" />
+                <column label="Nombre Departamento" />
+                <column label="ID Finalidad" />
+                <column label="Nombre Finalidad" />
+                <column label="Presupuesto" />
             </columns>
             <rows>
                 <row>
                     <label value="@bind(vm.presupuesto.idPresupuesto)" />
+                    <label value="@bind(vm.presupuesto.anio)" />
+                    <label value="@bind(vm.presupuesto.idDepartamento.idDepartamento)" />
+                    <label value="@bind(vm.presupuesto.idDepartamento.nombreDepartamento)" />
+                    <label value="@bind(vm.presupuesto.idFinalidad.idFinalidad)" />
+                    <label value="@bind(vm.presupuesto.idFinalidad.nombreFinalidad)" />
+                    <label value="@bind(vm.presupuesto.presupuesto)" />
                 </row>
             </rows>
         </grid>

@@ -12,6 +12,7 @@ import org.zkoss.zul.ListModelList;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PresupuestosVM {
 
@@ -101,21 +102,43 @@ public class PresupuestosVM {
         detalleDepartamentos = new ArrayList<>();
         detalleFinalidades = new ArrayList<>();
 
-        if (selectedPresupuesto != null) {
-            if (selectedPresupuesto.getIdDepartamento() != null) {
+        if(selectedPresupuesto != null){
+            if(selectedPresupuesto.getIdDepartamento() != null){
                 detalleDepartamentos.add(selectedPresupuesto.getIdDepartamento());
             }
-            if (selectedPresupuesto.getIdFinalidad() != null) {
-                detalleFinalidades.add(selectedPresupuesto.getIdFinalidad());
-            }
-
-            HashMap<String, Object> params = new HashMap<>();
-            params.put("presupuestoId", presupuestoId);
-            params.put("presupuesto", selectedPresupuesto);
-
-            Executions.sendRedirect("/presupuestos/details?presupuestoId=" + presupuestoId);
-
         }
+
+        if (selectedPresupuesto.getIdFinalidad() != null) {
+            detalleFinalidades.add(selectedPresupuesto.getIdFinalidad());
+        }
+
+        if( selectedPresupuesto.getIdDepartamento() != null){
+            List<Departamentos> departamentosRealcionados = listaPresupuestos.stream()
+                    .map(Presupuestos::getIdDepartamento)
+                    .filter(d -> d != null && d.getNombreDepartamento().equalsIgnoreCase(selectedPresupuesto.getIdDepartamento().getNombreDepartamento()))
+                    .distinct()
+                    .collect(Collectors.toList());
+
+            detalleDepartamentos.addAll(departamentosRealcionados);
+        }
+
+        if(selectedPresupuesto.getIdFinalidad() != null){
+            List<Finalidades> finalidadesRelacionadas = listaPresupuestos.stream()
+                    .map(Presupuestos::getIdFinalidad)
+                    .filter(f -> f != null && f.getNombreFinalidad().equalsIgnoreCase(selectedPresupuesto.getIdFinalidad().getNombreFinalidad()))
+                    .distinct()
+                    .collect(Collectors.toList());
+
+            detalleFinalidades.addAll(finalidadesRelacionadas);
+        }
+
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("presupuestoId", presupuestoId);
+        params.put("presupuesto", selectedPresupuesto);
+        params.put("detalleDepartamentos", detalleDepartamentos);
+        params.put("detalleFinalidades", detalleFinalidades);
+
+        Executions.sendRedirect("/presupuestos/details?presupuestoId=" + presupuestoId);
     }
 
 

@@ -6,18 +6,18 @@
         <listbox width="100%" rows="8" emptyMessage="No hay presupuestos disponibles" model="@bind(vm.listaPresupuestos)">
         <listhead>
                 <listheader label="ID" />
-                <listheader label="Año" />
-                <listheader label="ID Departamento" />
-                <listheader label="ID Finalidad" />
+
+
+
                 <listheader label="Presupuesto" />
                 <listheader label="Actions" />
             </listhead>
             <template name="model">
                 <listitem value="@bind(each)">
                     <listcell label="@bind(each.idPresupuesto)" />
-                    <listcell label="@bind(each.anio)" />
-                    <listcell label="@bind(each.idDepartamento.idDepartamento)" />
-                    <listcell label="@bind(each.idFinalidad.idFinalidad)" />
+
+
+
                     <listcell label="@bind(each.presupuesto)" />
                     <listcell>
                         <button label="Info" onClick="@command('showDetails', presupuestoId=each.idPresupuesto)" />
