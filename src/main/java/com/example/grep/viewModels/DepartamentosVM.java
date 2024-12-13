@@ -37,6 +37,10 @@ public class DepartamentosVM {
         return nombreDepartamento;
     }
 
+    public void setNombreDepartamento(String nombreDepartamento) {
+        this.nombreDepartamento = nombreDepartamento;
+    }
+
 
 
 }

@@ -4,50 +4,54 @@
             apply="org.zkoss.bind.BindComposer"
             viewModel="@id('vm') @init('com.example.grep.viewModels.DetailVM')">
 
-        <label value="Presupuesto Details" style="font-weight: bold; margin-bottom: 10px;" />
-
         <vlayout spacing="15px" style="padding:20px; width: 100%;">
-        <hlayout spacing="20px">
-            <vlayout spacing="5px">
-                <label value="ID" />
-                <textbox value="@bind(vm.presupuesto.idPresupuesto)" width="200px" />
-            </vlayout>
-            <vlayout spacing="5px">
-                <label value="Año" />
-                <textbox value="@bind(vm.presupuesto.anio)" width="200px" />
-            </vlayout>
-        </hlayout>
+            <hlayout spacing="20px">
+                <vlayout spacing="5px">
+                    <label value="ID" />
+                    <textbox value="@bind(vm.presupuesto.idPresupuesto)" width="200px" disabled="true" placeholder="@bind(vm.presupuesto.idPresupuesto)"/>
+                </vlayout>
+                <vlayout spacing="5px">
+                    <label value="Año" />
+                    <textbox value="@bind(vm.presupuesto.anio)" width="200px" />
+                </vlayout>
+            </hlayout>
 
-        <hlayout spacing="20px">
-            <vlayout spacing="5px">
-                <label value="ID Departamento" />
-                <textbox value="@bind(vm.presupuesto.idDepartamento.idDepartamento)" width="200px" />
-            </vlayout>
-            <vlayout spacing="5px">
-                <label value="Nombre Departamento" />
-                <textbox value="@bind(vm.presupuesto.idDepartamento.nombreDepartamento)" width="200px" />
-            </vlayout>
-        </hlayout>
+            <hlayout spacing="20px">
+                <vlayout spacing="5px">
+                    <label value="ID Departamento" />
+                    <textbox value="@bind(vm.presupuesto.idDepartamento.idDepartamento)" width="200px"  disabled="true"  />
+                </vlayout>
+                <vlayout spacing="5px">
+                    <label value="Nombre Departamento" />
+                    <textbox value="@bind(vm.nombreDepartamento)" width="200px" placeholder="@bind(vm.presupuesto.idDepartamento.nombreDepartamento)" />
+                </vlayout>
+            </hlayout>
 
-        <hlayout spacing="20px">
-            <vlayout spacing="5px">
-                <label value="ID Finalidad" />
-                <textbox value="@bind(vm.presupuesto.idFinalidad.idFinalidad)" width="200px" />
-            </vlayout>
-            <vlayout spacing="5px">
-                <label value="Nombre Finalidad" />
-                <textbox value="@bind(vm.presupuesto.idFinalidad.nombreFinalidad)" width="200px" />
-            </vlayout>
-
-        </hlayout>
+            <hlayout spacing="20px">
+                <vlayout spacing="5px">
+                    <label value="ID Finalidad" />
+                    <textbox value="@bind(vm.presupuesto.idFinalidad.idFinalidad)" width="200px" disabled="true"  />
+                </vlayout>
+                <vlayout spacing="5px">
+                    <label value="Nombre Finalidad" />
+                    <textbox value="@bind(vm.nombreFinalidad)" width="200px"   placeholder="@bind(vm.presupuesto.idFinalidad.nombreFinalidad )" />
+                </vlayout>
+            </hlayout>
 
             <hlayout spacing="20px">
                 <vlayout spacing="5px">
                     <label value="Presupuesto" />
-                    <textbox value="@bind(vm.presupuesto.presupuesto)" width="200px" />
+                    <textbox value="@bind(vm.presupuesto.presupuesto)" width="200px" placeholder="@bind(vm.presupuesto.presupuesto)"/>
+                </vlayout>
+
+            </hlayout>
+            <hlayout spacing="20px">
+                <vlayout spacing="5px">
+                    <button label="Guardar" onClick="@command('guardarUsuario')" style="margin-top: 20px;" />
                 </vlayout>
             </hlayout>
-    </vlayout>
+        </vlayout>
+
 
         <!--Gastos-->
         <label value="Gastos Details" style="font-weight: bold; margin: 20px 0 10px;" />
