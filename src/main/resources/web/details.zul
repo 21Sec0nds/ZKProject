@@ -6,33 +6,51 @@
 
         <label value="Presupuesto Details" style="font-weight: bold; margin-bottom: 10px;" />
 
-        <grid width="100%" emptyMessage="No hay presupuestos disponibles">
-            <columns>
-                <column label="ID" />
-                <column label="Año" />
-                <column label="ID Departamento" />
-                <column label="Nombre Departamento" />
-                <column label="ID Finalidad" />
-                <column label="Nombre Finalidad" />
-                <column label="Presupuesto" />
-            </columns>
-            <rows>
-                <row>
-                    <textbox value="@bind(vm.presupuesto.idPresupuesto)"/>
-                    <textbox value="@bind(vm.presupuesto.anio)" />
-                    <textbox value="@bind(vm.presupuesto.idDepartamento.idDepartamento)" />
-                    <textbox value="@bind(vm.presupuesto.idDepartamento.nombreDepartamento)" />
-                    <textbox value="@bind(vm.presupuesto.idFinalidad.idFinalidad)" />
-                    <textbox value="@bind(vm.presupuesto.idFinalidad.nombreFinalidad)" />
-                    <textbox value="@bind(vm.presupuesto.presupuesto)" />
-                </row>
-            </rows>
-        </grid>
+        <vlayout spacing="15px" style="padding:20px; width: 100%;">
+        <hlayout spacing="20px">
+            <vlayout spacing="5px">
+                <label value="ID" />
+                <textbox value="@bind(vm.presupuesto.idPresupuesto)" width="200px" />
+            </vlayout>
+            <vlayout spacing="5px">
+                <label value="Año" />
+                <textbox value="@bind(vm.presupuesto.anio)" width="200px" />
+            </vlayout>
+        </hlayout>
 
+        <hlayout spacing="20px">
+            <vlayout spacing="5px">
+                <label value="ID Departamento" />
+                <textbox value="@bind(vm.presupuesto.idDepartamento.idDepartamento)" width="200px" />
+            </vlayout>
+            <vlayout spacing="5px">
+                <label value="Nombre Departamento" />
+                <textbox value="@bind(vm.presupuesto.idDepartamento.nombreDepartamento)" width="200px" />
+            </vlayout>
+        </hlayout>
+
+        <hlayout spacing="20px">
+            <vlayout spacing="5px">
+                <label value="ID Finalidad" />
+                <textbox value="@bind(vm.presupuesto.idFinalidad.idFinalidad)" width="200px" />
+            </vlayout>
+            <vlayout spacing="5px">
+                <label value="Nombre Finalidad" />
+                <textbox value="@bind(vm.presupuesto.idFinalidad.nombreFinalidad)" width="200px" />
+            </vlayout>
+
+        </hlayout>
+
+            <hlayout spacing="20px">
+                <vlayout spacing="5px">
+                    <label value="Presupuesto" />
+                    <textbox value="@bind(vm.presupuesto.presupuesto)" width="200px" />
+                </vlayout>
+            </hlayout>
+    </vlayout>
 
         <!--Gastos-->
-        <label value="Gastos Details" style="font-weight: bold; margin-bottom: 10px;" />
-
+        <label value="Gastos Details" style="font-weight: bold; margin: 20px 0 10px;" />
         <grid width="100%" emptyMessage="No hay gastos disponibles">
             <columns>
                 <column label="ID Gasto" />
@@ -51,5 +69,6 @@
                 </row>
             </rows>
         </grid>
+
     </window>
 </zk>

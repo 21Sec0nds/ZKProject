@@ -16,11 +16,6 @@ public class PageController {
         return "redirect:/usuarios";
     }
 
-    @GetMapping("/hello")
-    public String hello() {
-        return "hello";
-    }
-
     @GetMapping("/departamentos")
     public String departamentos() {
         return "departamentos";
