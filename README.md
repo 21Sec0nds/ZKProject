@@ -4,6 +4,12 @@ Just a project to test the behavior and get a look at ZK.
 
 This project has different pages displaying data from different databases and each laber requires a redirection button to navigate to another page showing all related data. 
 
+
+
+> [!IMPORTANT]
+> The only affected page is **presupuestos**. Navigate to */presupuestos* to test the logic.
+
+
 ## Project Setup
 
 ### Prerequisites
