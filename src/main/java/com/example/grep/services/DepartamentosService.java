@@ -2,6 +2,7 @@ package com.example.grep.services;
 
 import com.example.grep.interfaces.IDepartamentos;
 import com.example.grep.models.Departamentos;
+import com.example.grep.models.Finalidades;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,4 +29,6 @@ public class DepartamentosService {
     public void deleteDepartamentos(Integer id) {
         departamentosRepository.deleteById(id);
     }
+
+
 }

@@ -95,7 +95,7 @@ public class DetailVM {
     }
 
     public Departamentos saveDepartamentos(Departamentos departamentos) {
-        return departamentoService.saveDepartamentos(departamentos);
+        return this.departamentoService.saveDepartamentos(departamentos);
     }
 
     // Initialization
@@ -114,48 +114,43 @@ public class DetailVM {
 
     // Command Methods
     @Command
-    @NotifyChange({"nombreDepartamento", "anio", "nombreFinalidad", "presupuesto"})
+    @NotifyChange({"anio", "nombreFinalidad", "presupuesto"})
     public void guardarUsuario() {
 
-        if (presupuesto == null || presupuesto.getIdDepartamento() == null || presupuesto.getAnio() == 0) {
-            Messagebox.show("Todos los campos son obligatorios.", "Error", Messagebox.OK, Messagebox.ERROR);
-            return;
-        }
-
-        if (nombreFinalidad == null || nombreFinalidad.trim().isEmpty()) {
-            Messagebox.show("El campo 'Nombre Finalidad' es obligatorio.", "Error", Messagebox.OK, Messagebox.ERROR);
-            return;
-        }
-
-        if (nombreDepartamento == null || nombreDepartamento.trim().isEmpty()) {
-            Messagebox.show("El campo 'Nombre Departamento' es obligatorio.", "Error", Messagebox.OK, Messagebox.ERROR);
-            return;
+        // Ensure the Finalidad isnot null
+        if (presupuesto.getIdFinalidad() == null) {
+            presupuesto.setIdFinalidad(new Finalidades());
         }
 
 
-        if (finalidades == null) {
-            finalidades = new Finalidades();
+        Finalidades finalidadToUpdate = finalidadesService.getFinalidadByNombre(nombreFinalidad);
+
+        if (finalidadToUpdate == null) {
+
+            finalidadToUpdate = new Finalidades();
+            finalidadToUpdate.setNombreFinalidad(nombreFinalidad);
+            saveFinalidades(finalidadToUpdate);
         }
-        finalidades.setNombreFinalidad(nombreFinalidad);
 
 
-        if (departamentos == null) {
-            departamentos = new Departamentos();
-        }
-        departamentos.setNombreDepartamento(nombreDepartamento);
+        presupuesto.setIdFinalidad(finalidadToUpdate);
+
+
+        presupuesto.getIdDepartamento().setNombreDepartamento(nombreDepartamento);
+        saveDepartamentos(presupuesto.getIdDepartamento());
 
 
         presupuesto.setAnio(anio);
 
-        presupuesto.getIdFinalidad().setNombreFinalidad(nombreFinalidad);
-        presupuesto.getIdDepartamento().setNombreDepartamento(nombreDepartamento);
-//        presupuesto.getAnio().
-//
-//
-//        presupuestosService.savePresupuesto(presupuesto);
-//        departamentoService.getDepartamentos().sa
-//        departamentoService.saveDepartamentos(getNombreDepartamento());
 
+        presupuestosService.savePresupuesto(presupuesto);
     }
+
+
+
+
+
+
+
 
 }

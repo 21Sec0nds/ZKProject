@@ -12,7 +12,7 @@
                 </vlayout>
                 <vlayout spacing="5px">
                     <label value="Año" />
-                    <textbox value="@bind(vm.presupuesto.anio)" width="200px" />
+                    <textbox value="@bind(vm.presupuesto.anio)"   width="200px" />
                 </vlayout>
             </hlayout>
 
@@ -23,7 +23,7 @@
                 </vlayout>
                 <vlayout spacing="5px">
                     <label value="Nombre Departamento" />
-                    <textbox value="@bind(vm.nombreDepartamento)" width="200px" placeholder="@bind(vm.presupuesto.idDepartamento.nombreDepartamento)" />
+                    <textbox value="@bind(vm.presupuesto.idDepartamento.nombreDepartamento)" width="200px" placeholder="@bind(vm.presupuesto.idDepartamento.nombreDepartamento)" />
                 </vlayout>
             </hlayout>
 

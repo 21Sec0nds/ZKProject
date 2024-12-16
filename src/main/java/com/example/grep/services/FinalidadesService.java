@@ -28,4 +28,8 @@ public class FinalidadesService {
     public void deleteFinalidades(String id) {
         finalidadesRepository.deleteById(id);
     }
+
+    public Finalidades getFinalidadByNombre(String nombreFinalidad) {
+        return finalidadesRepository.findByNombreFinalidad(nombreFinalidad);
+    }
 }
