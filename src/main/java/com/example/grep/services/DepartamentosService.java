@@ -30,5 +30,8 @@ public class DepartamentosService {
         departamentosRepository.deleteById(id);
     }
 
+    public Departamentos getDepartamentoByNombre(String nombreDepartamento) {
+        return departamentosRepository.findByNombreDepartamento(nombreDepartamento);
+    }
 
 }

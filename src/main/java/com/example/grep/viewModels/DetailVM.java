@@ -114,19 +114,18 @@ public class DetailVM {
 
     // Command Methods
     @Command
-    @NotifyChange({"anio", "nombreFinalidad", "presupuesto"})
+    @NotifyChange({"nombreDepartamento", "anio", "nombreFinalidad", "presupuesto"})
     public void guardarUsuario() {
-
-        // Ensure the Finalidad isnot null
         if (presupuesto.getIdFinalidad() == null) {
             presupuesto.setIdFinalidad(new Finalidades());
         }
-
+        if (presupuesto.getIdDepartamento() == null) {
+            presupuesto.setIdDepartamento(new Departamentos());
+        }
 
         Finalidades finalidadToUpdate = finalidadesService.getFinalidadByNombre(nombreFinalidad);
 
         if (finalidadToUpdate == null) {
-
             finalidadToUpdate = new Finalidades();
             finalidadToUpdate.setNombreFinalidad(nombreFinalidad);
             saveFinalidades(finalidadToUpdate);
@@ -136,21 +135,20 @@ public class DetailVM {
         presupuesto.setIdFinalidad(finalidadToUpdate);
 
 
-        presupuesto.getIdDepartamento().setNombreDepartamento(nombreDepartamento);
-        saveDepartamentos(presupuesto.getIdDepartamento());
+        Departamentos departamentoToUpdate = departamentoService.getDepartamentoByNombre(nombreDepartamento);
 
+        if (departamentoToUpdate == null) {
+            departamentoToUpdate = new Departamentos();
+            departamentoToUpdate.setNombreDepartamento(nombreDepartamento);
+            saveDepartamentos(departamentoToUpdate);
+        }
+
+        presupuesto.setIdDepartamento(departamentoToUpdate);
 
         presupuesto.setAnio(anio);
 
-
         presupuestosService.savePresupuesto(presupuesto);
     }
-
-
-
-
-
-
 
 
 }
