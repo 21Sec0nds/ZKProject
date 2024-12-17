@@ -1,11 +1,7 @@
 package com.example.grep.viewModels;
 
-import com.example.grep.interfaces.IDepartamentos;
-import com.example.grep.interfaces.IFinalidades;
-import com.example.grep.interfaces.IUsuarios;
 import com.example.grep.models.*;
 import com.example.grep.services.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.zkoss.bind.annotation.*;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.Messagebox;
@@ -15,23 +11,24 @@ import java.util.List;
 
 public class DetailVM {
 
-    // Services and Repositories
+    //------------------------------------------------- Services and Repositories ---------------------------------------
     @WireVariable
     private PresupuestosService presupuestosService;
-
     @WireVariable
     private GastosService gastosService;
-
     @WireVariable
     private Usuarios usuarioService;
-
     @WireVariable
     private FinalidadesService finalidadesService;
-
     @WireVariable
     private DepartamentosService departamentoService;
 
-    // Properties
+    //------------------------------------------------- Properties ---------------------------------------
+    private int mes;
+    private String description;
+    private int idGasto;
+    private double importe;
+
     private int anio;
     private Presupuestos presupuesto;
     private Departamentos departamentos;
@@ -44,64 +41,57 @@ public class DetailVM {
     private String idFinalidad;
     private Finalidades id_finalidad;
     private List<Gastos> detalleGastos = new ArrayList<>();
+    private List<Gastos> newlist = new ArrayList<>();
 
-    // Getters and Setters
-    public String getNombreFinalidad() {
-        return nombreFinalidad;
-    }
+    //------------------------------------------------- Getters and Setters ---------------------------------------
+    public String getNombreFinalidad() { return nombreFinalidad; }
+    public void setNombreFinalidad(String nombreFinalidad) { this.nombreFinalidad = nombreFinalidad; }
 
+    public int getAnio() { return anio; }
+    public void setAnio(int anio) { this.anio = anio; }
 
+    public String getNombreDepartamento() { return nombreDepartamento; }
+    public void setNombreDepartamento(String nombreDepartamento) { this.nombreDepartamento = nombreDepartamento; }
 
-    public int getAnio() {
-        return anio;
-    }
+    public List<Gastos> getDetalleGastos() { return detalleGastos; }
 
-    public void setNombreFinalidad(String nombreFinalidad) {
-        this.nombreFinalidad = nombreFinalidad;
-    }
+    public List<Gastos> getNewlist(){return newlist;}
 
-    public String getNombreDepartamento() {
-        return nombreDepartamento;
-    }
+    public String getIdFinalidad() { return idFinalidad; }
 
-    public void setNombreDepartamento(String nombreDepartamento) {
-        this.nombreDepartamento = nombreDepartamento;
-    }
+    public void setIdGasto(int idGasto) {this.idGasto = idGasto;}
 
-    public void setAnio(int anio) {
-        this.anio = anio;
-    }
+    public int getMes() { return mes; }
+    public void setMes(int mes) { this.mes = mes; }
 
-    public void setId_finalidad(Finalidades id_finalidad) {
-        this.id_finalidad = id_finalidad;
-    }
+    public Presupuestos getPresupuesto() { return presupuesto; }
 
-    public List<Gastos> getDetalleGastos() {
-        return detalleGastos;
-    }
+    public double getImporte() { return importe; }
+    public void setImporte(double importe) { this.importe = importe; }
 
-    public String getIdFinalidad() {
-        return idFinalidad;
-    }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 
-    public Presupuestos getPresupuesto() {
-        return presupuesto;
-    }
+    public void setId_finalidad(Finalidades id_finalidad) { this.id_finalidad = id_finalidad; }
 
-    // Save Methods
-    public Finalidades saveFinalidades(Finalidades finalidades) {
+    //------------------------------------------------- Save Methods ---------------------------------------
+    private Finalidades saveFinalidades(Finalidades finalidades) {
         return this.finalidadesService.saveFinalidades(finalidades);
     }
 
-    public Departamentos saveDepartamentos(Departamentos departamentos) {
+    private Departamentos saveDepartamentos(Departamentos departamentos) {
         return this.departamentoService.saveDepartamentos(departamentos);
     }
 
-    public Presupuestos saveAnio(Presupuestos anio) {
+    private Presupuestos saveAnio(Presupuestos anio) {
         return this.presupuestosService.saveAnio(anio);
     }
 
-    // Initialization
+    private Gastos saveGasto(Gastos gasto){
+        return  this.gastosService.saveGastos(gasto);
+    }
+
+    // --------------------------------------- Initialization ---------------------------------------
     @Init
     public void init(@ExecutionParam("presupuestoId") int presupuestoId) {
         presupuesto = presupuestosService.getPresupuestoById(presupuestoId);
@@ -113,9 +103,16 @@ public class DetailVM {
                     presupuesto.getAnio()
             );
         }
+
+
+        if (detalleGastos == null || detalleGastos.isEmpty()) {
+            detalleGastos.add(new Gastos());
+        }
     }
 
-    // Command Methods
+
+
+    //--------------------------------------- Command Methods---------------------------------------
     @Command
     @NotifyChange({"nombreDepartamento", "anio", "nombreFinalidad", "presupuesto"})
     public void guardarUsuario() {
@@ -137,9 +134,7 @@ public class DetailVM {
             saveFinalidades(finalidadToUpdate);
         }
 
-
         presupuesto.setIdFinalidad(finalidadToUpdate);
-
 
         Departamentos departamentoToUpdate = departamentoService.getDepartamentoByNombre(nombreDepartamento);
 
@@ -151,11 +146,35 @@ public class DetailVM {
 
         presupuesto.setIdDepartamento(departamentoToUpdate);
 
-
-
         presupuesto.setAnio(getAnio());
         presupuestosService.saveAnio(presupuesto);
     }
 
+
+
+    @Command
+    @NotifyChange({"detalleGastos", "mes", "anio", "importe", "description"})
+    public void addGasto() {
+        if (mes <= 0 || importe <= 0 || description == null || description.trim().isEmpty()) {
+            Messagebox.show("Por favor, complete todos los campos del gasto.", "Error", Messagebox.OK, Messagebox.ERROR);
+            return;
+        }
+
+        Gastos gasto = new Gastos();
+        gasto.setIdGasto(idGasto);
+        gasto.setMes(mes);
+        gasto.setAnio(anio);
+        gasto.setImporte(importe);
+        gasto.setDescripcion(description);
+
+        saveGasto(gasto);
+
+        detalleGastos.add(gasto);
+
+        setMes(0);
+        setImporte(0);
+        setDescription("");
+        setIdGasto(0);
+    }
 
 }

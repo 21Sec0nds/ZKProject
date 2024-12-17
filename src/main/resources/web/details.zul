@@ -12,14 +12,14 @@
                 </vlayout>
                 <vlayout spacing="5px">
                     <label value="Año" />
-                    <textbox placeholder="@bind(vm.presupuesto.anio)" value="@bind(vm.anio)"   width="200px"  />
+                    <textbox placeholder="@bind(vm.presupuesto.anio)" value="@bind(vm.anio)" width="200px" />
                 </vlayout>
             </hlayout>
 
             <hlayout spacing="20px">
                 <vlayout spacing="5px">
                     <label value="ID Departamento" />
-                    <textbox value="@bind(vm.presupuesto.idDepartamento.idDepartamento)" width="200px"  disabled="true"  />
+                    <textbox value="@bind(vm.presupuesto.idDepartamento.idDepartamento)" width="200px" disabled="true" />
                 </vlayout>
                 <vlayout spacing="5px">
                     <label value="Nombre Departamento" />
@@ -30,11 +30,11 @@
             <hlayout spacing="20px">
                 <vlayout spacing="5px">
                     <label value="ID Finalidad" />
-                    <textbox value="@bind(vm.presupuesto.idFinalidad.idFinalidad)" width="200px" disabled="true"  />
+                    <textbox value="@bind(vm.presupuesto.idFinalidad.idFinalidad)" width="200px" disabled="true" />
                 </vlayout>
                 <vlayout spacing="5px">
                     <label value="Nombre Finalidad" />
-                    <textbox value="@bind(vm.nombreFinalidad)" width="200px"   placeholder="@bind(vm.presupuesto.idFinalidad.nombreFinalidad )" />
+                    <textbox value="@bind(vm.nombreFinalidad)" width="200px" placeholder="@bind(vm.presupuesto.idFinalidad.nombreFinalidad)" />
                 </vlayout>
             </hlayout>
 
@@ -52,8 +52,7 @@
             </hlayout>
         </vlayout>
 
-
-        <!--Gastos-->
+        <!-- Existing Gastos Table -->
         <label value="Gastos Details" style="font-weight: bold; margin: 20px 0 10px;" />
         <grid width="100%" emptyMessage="No hay gastos disponibles">
             <columns>
@@ -62,6 +61,7 @@
                 <column label="Año" />
                 <column label="Importe" />
                 <column label="Descripción" />
+                <column label="Acciones" />
             </columns>
             <rows>
                 <row forEach="${vm.detalleGastos}">
@@ -71,8 +71,15 @@
                     <label value="${each.importe}" />
                     <label value="${each.descripcion}" />
                 </row>
+                <row forEach="${vm.detalleGastos}">
+                    <textbox width="200px" placeholder="ID Gasto" value="@bind(each.idGasto)" />
+                    <textbox width="200px" placeholder="Mes" value="@bind(each.mes)" />
+                    <textbox width="200px" placeholder="Año" value="@bind(each.anio)" />
+                    <textbox width="200px" placeholder="Importe" value="@bind(each.importe)" />
+                    <textbox width="200px" placeholder="Descripción" value="@bind(each.descripcion)" />
+                    <button label="Añadir" onClick="@command('addGasto')" style="margin-left: 10px;" />
+                </row>
             </rows>
         </grid>
-
     </window>
 </zk>
