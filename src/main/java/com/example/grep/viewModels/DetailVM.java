@@ -52,7 +52,6 @@ public class DetailVM {
 
 
 
-
     public int getAnio() {
         return anio;
     }
@@ -98,6 +97,10 @@ public class DetailVM {
         return this.departamentoService.saveDepartamentos(departamentos);
     }
 
+    public Presupuestos saveAnio(Presupuestos anio) {
+        return this.presupuestosService.saveAnio(anio);
+    }
+
     // Initialization
     @Init
     public void init(@ExecutionParam("presupuestoId") int presupuestoId) {
@@ -116,6 +119,9 @@ public class DetailVM {
     @Command
     @NotifyChange({"nombreDepartamento", "anio", "nombreFinalidad", "presupuesto"})
     public void guardarUsuario() {
+
+
+
         if (presupuesto.getIdFinalidad() == null) {
             presupuesto.setIdFinalidad(new Finalidades());
         }
@@ -145,9 +151,10 @@ public class DetailVM {
 
         presupuesto.setIdDepartamento(departamentoToUpdate);
 
-        presupuesto.setAnio(anio);
 
-        presupuestosService.savePresupuesto(presupuesto);
+
+        presupuesto.setAnio(getAnio());
+        presupuestosService.saveAnio(presupuesto);
     }
 
 

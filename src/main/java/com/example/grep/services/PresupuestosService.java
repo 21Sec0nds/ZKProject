@@ -31,6 +31,8 @@ public class PresupuestosService {
         return presupuestoRepository.save(presupuesto);
     }
 
+    public Presupuestos saveAnio(Presupuestos anio){return presupuestoRepository.save(anio);}
+
     public void deletePresupuesto(Integer id) {
         presupuestoRepository.deleteById(id);
     }
