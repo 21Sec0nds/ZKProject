@@ -57,29 +57,37 @@
         <grid width="100%" emptyMessage="No hay gastos disponibles">
             <columns>
                 <column label="ID Gasto" />
+                <column label="Nombre de Departamento" />
+                <column label="Finalidad" />
                 <column label="Mes" />
                 <column label="Año" />
                 <column label="Importe" />
                 <column label="Descripción" />
-                <column label="Acciones" />
             </columns>
             <rows>
                 <row forEach="${vm.detalleGastos}">
                     <label value="${each.idGasto}" />
+                    <label value="${each.departamento.idDepartamento}" />
+                    <label value="${each.finalidad.nombreFinalidad}" />
                     <label value="${each.mes}" />
                     <label value="${each.anio}" />
                     <label value="${each.importe}" />
                     <label value="${each.descripcion}" />
                 </row>
-                <row forEach="${vm.detalleGastos}">
-                    <textbox width="200px" placeholder="ID Gasto" value="@bind(each.idGasto)" />
-                    <textbox width="200px" placeholder="Mes" value="@bind(each.mes)" />
-                    <textbox width="200px" placeholder="Año" value="@bind(each.anio)" />
-                    <textbox width="200px" placeholder="Importe" value="@bind(each.importe)" />
-                    <textbox width="200px" placeholder="Descripción" value="@bind(each.descripcion)" />
-                    <button label="Añadir" onClick="@command('addGasto')" style="margin-left: 10px;" />
-                </row>
+
             </rows>
+
         </grid>
+
+        <label value="añadir gastos" style="font-weight: bold; margin: 20px 0 10px;" />
+        <hbox>
+            <textbox value="@bind(vm.nombreDepartamento2)" placeholder="Departamento" />
+            <textbox value="@bind(vm.nombreFinalidad2)" placeholder="Finalidad" />
+            <intbox value="@bind(vm.mes)" placeholder="Mes" />
+            <intbox value="@bind(vm.anio)" placeholder="Año" />
+            <doublebox value="@bind(vm.importe)" placeholder="Importe" />
+            <textbox value="@bind(vm.description)" placeholder="Descripción" />
+            <button label="Añadir Gasto" onClick="@command('addGasto')" />
+        </hbox>
     </window>
 </zk>

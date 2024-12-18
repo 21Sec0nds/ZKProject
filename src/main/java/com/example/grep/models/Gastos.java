@@ -102,5 +102,4 @@ public class Gastos {
         this.justificante = justificante;
     }
 
-
 }

@@ -35,9 +35,12 @@ public class DetailVM {
     private Finalidades finalidades;
     private double presupuestop;
     private Departamentos id_departamento;
+    private String departamento;
 
     private String nombreFinalidad;
+    private String nombreFinalidad2;
     private String nombreDepartamento;
+    private String nombreDepartamento2;
     private String idFinalidad;
     private Finalidades id_finalidad;
     private List<Gastos> detalleGastos = new ArrayList<>();
@@ -47,11 +50,17 @@ public class DetailVM {
     public String getNombreFinalidad() { return nombreFinalidad; }
     public void setNombreFinalidad(String nombreFinalidad) { this.nombreFinalidad = nombreFinalidad; }
 
+    public String getNombreFinalidad2() { return nombreFinalidad2; }
+    public void setNombreFinalidad2(String nombreFinalidad2) { this.nombreFinalidad2 = nombreFinalidad2; }
+
     public int getAnio() { return anio; }
     public void setAnio(int anio) { this.anio = anio; }
 
     public String getNombreDepartamento() { return nombreDepartamento; }
     public void setNombreDepartamento(String nombreDepartamento) { this.nombreDepartamento = nombreDepartamento; }
+
+    public String getNombreDepartamento2() { return nombreDepartamento2; }
+    public void setNombreDepartamento2(String nombreDepartamento2) { this.nombreDepartamento2 = nombreDepartamento2; }
 
     public List<Gastos> getDetalleGastos() { return detalleGastos; }
 
@@ -74,6 +83,13 @@ public class DetailVM {
 
     public void setId_finalidad(Finalidades id_finalidad) { this.id_finalidad = id_finalidad; }
 
+    public String getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
+    }
     //------------------------------------------------- Save Methods ---------------------------------------
     private Finalidades saveFinalidades(Finalidades finalidades) {
         return this.finalidadesService.saveFinalidades(finalidades);
@@ -153,28 +169,49 @@ public class DetailVM {
 
 
     @Command
-    @NotifyChange({"detalleGastos", "mes", "anio", "importe", "description"})
+    @NotifyChange({"detalleGastos", "mes", "anio", "importe", "description", "nombreDepartamento2", "finalidades"})
     public void addGasto() {
         if (mes <= 0 || importe <= 0 || description == null || description.trim().isEmpty()) {
             Messagebox.show("Por favor, complete todos los campos del gasto.", "Error", Messagebox.OK, Messagebox.ERROR);
             return;
         }
 
+        Departamentos departamento = departamentoService.getDepartamentoByNombre(nombreDepartamento2);
+        if (departamento == null) {
+            departamento = new Departamentos();
+            departamento.setNombreDepartamento(nombreDepartamento2);
+            saveDepartamentos(departamento);
+        }
+
+        Finalidades finalidades1 =  finalidadesService.getFinalidadByNombre(nombreFinalidad2);
+        if (finalidades1 == null) {
+            finalidades1 = new Finalidades();
+            finalidades1.setNombreFinalidad(nombreFinalidad2);
+            saveFinalidades(finalidades1);
+        }
+
         Gastos gasto = new Gastos();
-        gasto.setIdGasto(idGasto);
         gasto.setMes(mes);
         gasto.setAnio(anio);
         gasto.setImporte(importe);
         gasto.setDescripcion(description);
+        gasto.setDepartamento(departamento);
+        gasto.setFinalidad(finalidades1);
 
         saveGasto(gasto);
-
         detalleGastos.add(gasto);
 
+        resetGastoFields();
+    }
+
+    private void resetGastoFields() {
         setMes(0);
         setImporte(0);
         setDescription("");
-        setIdGasto(0);
+        setNombreDepartamento2("");
+        setNombreFinalidad2(null);
+        setAnio(0);
     }
+
 
 }
