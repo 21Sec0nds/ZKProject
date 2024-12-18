@@ -2,12 +2,24 @@ package com.example.grep.viewModels;
 
 import com.example.grep.models.*;
 import com.example.grep.services.*;
+import org.hibernate.tool.schema.spi.Exporter;
 import org.zkoss.bind.annotation.*;
+import org.zkoss.util.media.AMedia;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
+import org.zkoss.zul.Filedownload;
 import org.zkoss.zul.Messagebox;
 
+import java.awt.print.Book;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+
+
+
 
 public class DetailVM {
 
@@ -111,7 +123,6 @@ public class DetailVM {
     @Init
     public void init(@ExecutionParam("presupuestoId") int presupuestoId) {
         presupuesto = presupuestosService.getPresupuestoById(presupuestoId);
-
         if (presupuesto != null) {
             detalleGastos = gastosService.getGastosByFilters(
                     presupuesto.getIdDepartamento() != null ? presupuesto.getIdDepartamento().getIdDepartamento() : null,
@@ -119,15 +130,10 @@ public class DetailVM {
                     presupuesto.getAnio()
             );
         }
-
-
         if (detalleGastos == null || detalleGastos.isEmpty()) {
             detalleGastos.add(new Gastos());
         }
     }
-
-
-
     //--------------------------------------- Command Methods---------------------------------------
     @Command
     @NotifyChange({"nombreDepartamento", "anio", "nombreFinalidad", "presupuesto"})
@@ -165,9 +171,6 @@ public class DetailVM {
         presupuesto.setAnio(getAnio());
         presupuestosService.saveAnio(presupuesto);
     }
-
-
-
     @Command
     @NotifyChange({"detalleGastos", "mes", "anio", "importe", "description", "nombreDepartamento2", "finalidades"})
     public void addGasto() {
@@ -212,6 +215,8 @@ public class DetailVM {
         setNombreFinalidad2(null);
         setAnio(0);
     }
+
+
 
 
 }
