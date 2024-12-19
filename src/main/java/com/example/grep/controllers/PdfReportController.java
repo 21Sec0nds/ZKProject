@@ -1,7 +1,6 @@
 package com.example.grep.controllers;
 
 import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.export.*;
 import org.springframework.http.*;
@@ -17,8 +16,7 @@ public class PdfReportController {
     @GetMapping("/generate")
     public ResponseEntity<byte[]> generatePdf(@RequestParam String title,
                                               @RequestParam double minSalary,
-                                              @RequestParam String condition,
-    {      //         @RequestParam List<DetalleGasto> detalleGastos) {
+                                              @RequestParam String condition) {
         try {
             String jrxmlFile = "C:\\Users\\alex.alyeksyeyenko\\Desktop\\git2\\src\\main\\resources\\web\\report.jrxml";
             InputStream inputStream = new FileInputStream(jrxmlFile);
@@ -29,8 +27,7 @@ public class PdfReportController {
             parameters.put("minSalary", minSalary);
             parameters.put("condition", condition);
 
-
-            JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(detalleGastos);
+            JRDataSource dataSource = new JREmptyDataSource();
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 
