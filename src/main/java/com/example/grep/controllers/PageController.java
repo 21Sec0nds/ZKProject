@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/")
 public class PageController {
 
+
     @GetMapping("/")
     public String homepage() {
         return "redirect:/usuarios";
@@ -19,7 +20,6 @@ public class PageController {
     public String departamentos() {
         return "departamentos";
     }
-
 
     @GetMapping("/finalidades")
     public String finalidades() {
@@ -56,4 +56,5 @@ public class PageController {
     public String usuarios() {
         return "usuarios";
     }
+
 }

@@ -27,4 +27,6 @@ public class Finalidades {
     public void setNombreFinalidad(String nombreFinalidad) {
         this.nombreFinalidad = nombreFinalidad;
     }
+
+
 }

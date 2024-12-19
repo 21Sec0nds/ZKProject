@@ -9,5 +9,6 @@ import java.util.List;
 
 public interface IGastos extends JpaRepository<Gastos,Integer> {
 
-
+    @Query("SELECT g FROM Gastos g WHERE g.anio = :anio AND g.mes = :mes")
+    List<Gastos> findByAnioAndMes(@Param("anio") int anio, @Param("mes") String mes);
 }
