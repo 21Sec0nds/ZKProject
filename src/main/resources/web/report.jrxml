@@ -18,9 +18,16 @@
 
     <!-- Title band -->
     <title>
-        <band height="50">
+        <band height="80">
             <staticText>
-                <reportElement x="0" y="0" width="515" height="50" />
+                <reportElement x="0" y="0" width="515" height="40" />
+                <textElement>
+                    <font size="18" isBold="true"/>
+                </textElement>
+                <text><![CDATA[PRESUPUESTOS]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="0" y="40" width="515" height="40" />
                 <textElement>
                     <font size="18" isBold="true"/>
                 </textElement>
@@ -31,24 +38,65 @@
 
     <!-- Detail band -->
     <detail>
-        <band height="20">
-            <textField>
+        <band height="40">
+            <!-- Labels -->
+            <staticText>
                 <reportElement x="0" y="0" width="100" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[ID Gasto]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="100" y="0" width="100" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Departamento]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="200" y="0" width="100" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Año]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="300" y="0" width="100" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Importe]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="400" y="0" width="100" height="20"/>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Descripcion]]></text>
+            </staticText>
+
+            <!-- Data fields -->
+            <textField>
+                <reportElement x="0" y="20" width="100" height="20"/>
                 <textFieldExpression><![CDATA[$F{idGasto}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="100" y="0" width="100" height="20"/>
+                <reportElement x="100" y="20" width="100" height="20"/>
                 <textFieldExpression><![CDATA[$F{departamentoId}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="200" y="0" width="100" height="20"/>
+                <reportElement x="200" y="20" width="100" height="20"/>
                 <textFieldExpression><![CDATA[$F{anio}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="300" y="0" width="100" height="20"/>
+                <reportElement x="300" y="20" width="100" height="20"/>
+                <textFieldExpression><![CDATA[$F{importe}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="400" y="20" width="100" height="20"/>
                 <textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
             </textField>
-            <!-- Other fields like mes, anio, etc. -->
         </band>
     </detail>
 

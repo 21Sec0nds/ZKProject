@@ -15,6 +15,8 @@ public class Finalidades {
     @Column(name = "NOMBRE_FINALIDAD", nullable = false)
     private String nombreFinalidad;
 
+
+
     public Finalidades() {}
     public String getIdFinalidad() { return id_finalidad; }
     public void setIdFinalidad(String id_finalidad) { this.id_finalidad = id_finalidad; }
@@ -27,6 +29,7 @@ public class Finalidades {
     public void setNombreFinalidad(String nombreFinalidad) {
         this.nombreFinalidad = nombreFinalidad;
     }
+
 
 
 }

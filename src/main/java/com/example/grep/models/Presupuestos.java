@@ -1,6 +1,10 @@
 package com.example.grep.models;
 
+import com.example.grep.services.DepartamentosService;
 import jakarta.persistence.*;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 @Entity
 @Table(name = "PRESUPUESTOS")
@@ -24,7 +28,12 @@ public class Presupuestos {
     @Column(name = "PRESUPUESTO", nullable = false)
     private Double presupuesto;
 
+
+
+
+
     public Presupuestos() {}
+
 
     public Integer getIdPresupuesto() { return id_presupuesto; }
     public void setIdPresupuesto(Integer id_presupuesto) { this.id_presupuesto = id_presupuesto; }
@@ -34,6 +43,8 @@ public class Presupuestos {
 
     public Departamentos getIdDepartamento() { return id_departamento; }
     public void setIdDepartamento(Departamentos id_departamento) { this.id_departamento = id_departamento; }
+
+
 
     public Finalidades getIdFinalidad() { return id_finalidad; }
     public void setIdFinalidad(Finalidades id_finalidad) { this.id_finalidad = id_finalidad; }

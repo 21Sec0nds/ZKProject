@@ -2,6 +2,7 @@ package com.example.grep.services;
 
 import com.example.grep.interfaces.IGastos;
 import com.example.grep.interfaces.IPresupuesto;
+import com.example.grep.models.Departamentos;
 import com.example.grep.models.Gastos;
 import com.example.grep.models.Presupuestos;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ public class PresupuestosService {
 
     @Autowired
     private IPresupuesto presupuestoRepository;
+
+
 
     @Autowired
     private IGastos gastoRepository;
@@ -30,6 +33,7 @@ public class PresupuestosService {
     public Presupuestos savePresupuesto(Presupuestos presupuesto) {
         return presupuestoRepository.save(presupuesto);
     }
+
 
     public Presupuestos saveAnio(Presupuestos anio){return presupuestoRepository.save(anio);}
 
