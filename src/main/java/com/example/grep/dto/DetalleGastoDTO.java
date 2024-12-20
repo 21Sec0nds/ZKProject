@@ -1,6 +1,6 @@
 package com.example.grep.dto;
 
-public class DetalleGasto {
+public class DetalleGastoDTO {
 
     private int idGasto;
     private String departamentoId;
@@ -9,10 +9,12 @@ public class DetalleGasto {
     private int anio;
     private double importe;
     private String descripcion;
+    private int idPresupuesto;
+    private int anioPresupuesto;
 
     // Constructor
-    public DetalleGasto(int idGasto, String departamentoId, String finalidad,
-                        String mes, int anio, double importe, String descripcion) {
+    public DetalleGastoDTO(int idGasto, String departamentoId, String finalidad,
+                           String mes, int anio, double importe, String descripcion) {
         this.idGasto = idGasto;
         this.departamentoId = departamentoId;
         this.finalidad = finalidad;
@@ -77,5 +79,21 @@ public class DetalleGasto {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Integer getIdPresupuesto() {  // Add getter
+        return idPresupuesto;
+    }
+
+    public void setIdPresupuesto(Integer idPresupuesto) {  // Add setter
+        this.idPresupuesto = idPresupuesto;
+    }
+
+    public Integer getAnioPresupuesto() {
+        return anioPresupuesto;
+    }
+
+    public void setAnioPresupuesto(Integer anioPresupuesto) {
+        this.anioPresupuesto = anioPresupuesto;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.grep.controllers;
 
-import com.example.grep.dto.DetalleGasto;
+import com.example.grep.dto.DetalleGastoDTO;
+import com.example.grep.dto.PresupuestosDTO;
 import com.example.grep.models.Presupuestos;
 import com.example.grep.services.GastosService;
 import com.example.grep.services.PresupuestosService;
@@ -19,13 +20,10 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/pdf")
 public class PdfReportController {
-
     @Autowired
     private GastosService gastosService;
-
     @Autowired
     private PresupuestosService presupuestosService;
-
     @GetMapping("/generate")
     public ResponseEntity<byte[]> generatePdf(@RequestParam String title,
                                               @RequestParam double minSalary,
@@ -56,30 +54,51 @@ public class PdfReportController {
             double targetImporte = presupuesto.getPresupuesto();
             int targetDepartamentoId = presupuesto.getIdDepartamento().getIdDepartamento();
 
-            List<DetalleGasto> filteredGastos = gastosService.getAllGastos().stream()
+//----------------------------------------------Get data----------------------------------------------------------------
+//          -------------------------------------------Gastos------------------------------------------
+            List<DetalleGastoDTO> filteredGastos = gastosService.getAllGastos().stream()
                     .filter(gasto -> gasto.getImporte() == targetImporte &&
                             gasto.getDepartamento().getIdDepartamento() == targetDepartamentoId)
-                    .map(gasto -> new DetalleGasto(
+                    .map(gasto -> new DetalleGastoDTO(
                             gasto.getIdGasto(),
                             String.valueOf(gasto.getDepartamento().getIdDepartamento()),
-                            "",
+                            gasto.getFinalidad().getNombreFinalidad(),
                             String.valueOf(gasto.getMes()),
                             gasto.getAnio(),
                             gasto.getImporte(),
-                            gasto.getDescripcion()))
+                            gasto.getDescripcion()
+                            ))
                     .collect(Collectors.toList());
-
-
-
-
+//          --------------------------------------------Presupuestos-----------------------------------
+            PresupuestosDTO presupuestogetall = presupuestosService.getAllPresupuestos().stream()
+                    .filter(p -> p.getIdPresupuesto() == Presupuesto)
+                    .map(p -> new PresupuestosDTO(
+                            p.getIdPresupuesto(),
+                            p.getAnio(),
+                            p.getIdDepartamento().getIdDepartamento(),
+                            p.getIdFinalidad().getIdFinalidad(),
+                            p.getPresupuesto()))
+                    .findFirst()
+                    .orElse(null);
+//------------------------------------------------------------If dont have gastos--------------------------------------------------
             if (filteredGastos.isEmpty()) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                        .body("No matching Gastos found".getBytes());
+                filteredGastos.add(new DetalleGastoDTO(0, null, null, null, 0, 0, null));
             }
+//--------------------------------------------------------Export to pdf------------------------------------------------------------
+            JRDataSource dataSource1 = new JRBeanCollectionDataSource(filteredGastos);
+            List<PresupuestosDTO> presupuestosList = presupuestogetall != null ?
+                    Collections.singletonList(presupuestogetall) : new ArrayList<>();
 
-            JRDataSource dataSource = new JRBeanCollectionDataSource(filteredGastos);
+            JRDataSource dataSource2 = new JRBeanCollectionDataSource(presupuestosList);
 
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+            JasperPrint jasperPrint;
+            if (!filteredGastos.isEmpty()) {
+
+                jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JRBeanCollectionDataSource(filteredGastos));
+            } else {
+
+                jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource2);
+            }
 
             ByteArrayOutputStream pdfStream = new ByteArrayOutputStream();
             JRPdfExporter exporter = new JRPdfExporter();
@@ -95,6 +114,7 @@ public class PdfReportController {
 
             return ResponseEntity.ok().headers(headers).body(pdfBytes);
 
+//-------------------------------------------------------------debug--------------------------------------------------
         } catch (JRException e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error generating report".getBytes());
