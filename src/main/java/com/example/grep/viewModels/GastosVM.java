@@ -10,7 +10,6 @@ import org.zkoss.zul.ListModelList;
 import java.util.List;
 
 public class GastosVM {
-
     @WireVariable
     private GastosService gastosService;
 
@@ -42,5 +41,4 @@ public class GastosVM {
     public Double getImporte(){return Importe;}
     public String getDescription(){return Description;}
     public String getJustificante(){return Justificante;}
-
 }

@@ -14,8 +14,11 @@
                 <listheader label="Description" />
                 <listheader label="Justificante" />
             </listhead>
+
             <template name="model">
+
                 <listitem>
+
                     <listcell label="@bind(each.idGasto)" />
                     <listcell label="@bind(each.idDepartamento)" />
                     <listcell label="@bind(each.idFinalidad)" />

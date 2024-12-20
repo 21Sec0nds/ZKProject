@@ -1,14 +1,10 @@
 package com.example.grep.controllers;
-
 import com.example.grep.models.Finalidades;
 import com.example.grep.services.FinalidadesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-
-
 @RestController
 @RequestMapping("/api/finalidades")
 public class FinalidadesController {
@@ -32,4 +28,5 @@ public class FinalidadesController {
     public void deleteTipoEstadoLiqui(@PathVariable String id) {
         finalidadesService.deleteFinalidades(id);
     }
+
 }

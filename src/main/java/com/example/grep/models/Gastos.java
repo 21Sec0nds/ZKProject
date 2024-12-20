@@ -1,8 +1,6 @@
 package com.example.grep.models;
-
 import jakarta.persistence.*;
 import java.lang.annotation.Target;
-
 @Entity
 @Table(name = "GASTOS")
 public class Gastos {
@@ -34,10 +32,8 @@ public class Gastos {
     @Column(name = "JUSTIFICANTE")
     private byte[] justificante;
 
-    // Constructor por defecto
     public Gastos() {}
 
-    // Getters y Setters
     public Integer getIdGasto() {
         return idGasto;
     }
@@ -54,8 +50,7 @@ public class Gastos {
         this.departamento = departamento;
     }
 
-    public Finalidades getFinalidad() {
-        return finalidad;
+    public Finalidades getFinalidad() {return finalidad;
     }
 
     public void setFinalidad(Finalidades finalidad) {
@@ -101,5 +96,4 @@ public class Gastos {
     public void setJustificante(byte[] justificante) {
         this.justificante = justificante;
     }
-
 }

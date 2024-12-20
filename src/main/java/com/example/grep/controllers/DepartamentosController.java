@@ -32,6 +32,4 @@ public class DepartamentosController {
     public void deleteDepartamentos(@PathVariable Integer id) {
         departamentosService.deleteDepartamentos(id);
     }
-
-
 }

@@ -16,7 +16,6 @@ public class PresupuestosDTO {
         this.idFinalidad = idFinalidad;
         this.presupuesto = presupuesto;
     }
-
     // Getters and Setters
     public Integer getIdPresupuesto() {
         return idPresupuesto;

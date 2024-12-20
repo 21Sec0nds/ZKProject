@@ -30,4 +30,5 @@ public class TipoEstadoLiquiController {
     public void deleteTipoEstadoLiqui(@PathVariable Integer id) {
         tipoEstadoLiquiService.deleteTipoEstadoLiqui(id);
     }
+
 }

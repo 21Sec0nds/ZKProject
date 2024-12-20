@@ -33,4 +33,7 @@ public class FinalidadesService {
     public Finalidades getFinalidadByNombre(String nombreFinalidad) {
         return finalidadesRepository.findByNombreFinalidad(nombreFinalidad);
     }
+
+
+
 }

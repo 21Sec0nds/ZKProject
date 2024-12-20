@@ -95,4 +95,5 @@
             <button label="Añadir Gasto" onClick="@command('addGasto')" />
         </hbox>
     </window>
+
 </zk>

@@ -131,11 +131,9 @@ public class PresupuestosVM {
             Executions.sendRedirect("/presupuestos/details?presupuestoId=" + presupuestoId);
         }
     }
-
     public Presupuestos getSelectedItem() {
         return selectedItem;
     }
-
     public void setSelectedItem(Presupuestos selectedItem) {
         this.selectedItem = selectedItem;
     }

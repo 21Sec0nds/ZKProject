@@ -10,7 +10,6 @@ import org.zkoss.zul.ListModelList;
 import java.util.List;
 
 public class LiquidacionesVM {
-
     @WireVariable
     private LiquidacionesService liquidacionesService;
 

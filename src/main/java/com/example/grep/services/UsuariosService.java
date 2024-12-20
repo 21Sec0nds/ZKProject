@@ -9,7 +9,6 @@ import java.util.List;
 
 @Service("usuarioService")
 public class UsuariosService  {
-
     @Autowired
     private IUsuarios usuariosRepository;
 
@@ -28,6 +27,4 @@ public class UsuariosService  {
     public void deleteUsuario(String id) {
         usuariosRepository.deleteById(id);
     }
-
-
 }

@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @RestController
 @RequestMapping("/api/gastos")
 public class GastosController {
@@ -32,7 +31,6 @@ public class GastosController {
         Gastos savedGastos = gastosService.saveGastos(gastos);
         return ResponseEntity.ok(savedGastos);
     }
-
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteDepartamentos(@PathVariable Integer id) {
         gastosService.deleteGastos(id);

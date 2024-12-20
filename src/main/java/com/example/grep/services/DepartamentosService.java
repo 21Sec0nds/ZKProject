@@ -10,7 +10,6 @@ import java.util.List;
 
 @Service("departamentoService")
 public class DepartamentosService {
-
     @Autowired
     private IDepartamentos departamentosRepository;
 
@@ -25,7 +24,6 @@ public class DepartamentosService {
     public Departamentos saveDepartamentos(Departamentos departamentos) {
         return departamentosRepository.save(departamentos);
     }
-
     public void deleteDepartamentos(Integer id) {
         departamentosRepository.deleteById(id);
     }
@@ -33,5 +31,4 @@ public class DepartamentosService {
     public Departamentos getDepartamentoByNombre(String nombreDepartamento) {
         return departamentosRepository.findByNombreDepartamento(nombreDepartamento);
     }
-
 }

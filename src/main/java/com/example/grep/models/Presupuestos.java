@@ -51,6 +51,4 @@ public class Presupuestos {
 
     public Double getPresupuesto() { return presupuesto; }
     public void setPresupuesto(Double presupuesto) { this.presupuesto = presupuesto; }
-
-
 }

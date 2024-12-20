@@ -17,8 +17,6 @@ public class PresupuestosService {
     @Autowired
     private IPresupuesto presupuestoRepository;
 
-
-
     @Autowired
     private IGastos gastoRepository;
 
@@ -34,7 +32,6 @@ public class PresupuestosService {
         return presupuestoRepository.save(presupuesto);
     }
 
-
     public Presupuestos saveAnio(Presupuestos anio){return presupuestoRepository.save(anio);}
 
     public void deletePresupuesto(Integer id) {
@@ -47,9 +44,6 @@ public class PresupuestosService {
                 .filter(presupuesto -> presupuesto.getIdFinalidad().getIdFinalidad() == finalidad)
                 .collect(Collectors.toList());
     }
-
-
-
 
 }
 

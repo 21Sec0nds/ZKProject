@@ -23,7 +23,6 @@ public class LiquidacionesService {
     public Liquidaciones saveLiquidaciones(Liquidaciones liquidaciones) {
         return liquidacionesRepository.save(liquidaciones);
     }
-
     public void deleteLiquidaciones(Integer id) {
         liquidacionesRepository.deleteById(id);
     }

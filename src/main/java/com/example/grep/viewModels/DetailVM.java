@@ -23,7 +23,6 @@ import java.util.List;
 
 
 public class DetailVM {
-
     //------------------------------------------------- Services and Repositories ---------------------------------------
     @WireVariable
     private PresupuestosService presupuestosService;
@@ -35,7 +34,6 @@ public class DetailVM {
     private FinalidadesService finalidadesService;
     @WireVariable
     private DepartamentosService departamentoService;
-
     //------------------------------------------------- Properties ---------------------------------------
     private int mes;
     private String description;
@@ -221,8 +219,6 @@ public class DetailVM {
     public void FindById() {
         Executions.sendRedirect("/api/pdf/generate?Presupuesto=" + presupuesto.getIdPresupuesto());
     }
-
-
 
 
 }

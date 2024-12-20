@@ -40,4 +40,5 @@ public class LiquiVM {
     public String getNameEstado() {
         return nameEstado;
     }
+
 }

@@ -68,8 +68,6 @@ public class UsuariosVM {
             Messagebox.show("Todos los campos son obligatorios.", "Error", Messagebox.OK, Messagebox.ERROR);
             return;
         }
-
-
         Usuarios nuevoUsr = new Usuarios();
         nuevoUsr.setIdUsuario(idUsuario.trim());
         nuevoUsr.setNombreUsuario(nombreUsuario.trim());

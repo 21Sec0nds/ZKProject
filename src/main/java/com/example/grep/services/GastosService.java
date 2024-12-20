@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 @Service("gastosService")
 public class GastosService {
-
     @Autowired
     private IGastos gastosRepository;
 
@@ -28,7 +27,6 @@ public class GastosService {
     public void deleteGastos(Integer id) {
         gastosRepository.deleteById(id);
     }
-
     public List<Gastos> getGastosByFilters(int departamentoId, String finalidadId, int anio) {
         List<Gastos> allGastos = gastosRepository.findAll();
 

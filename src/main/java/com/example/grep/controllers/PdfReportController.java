@@ -109,7 +109,6 @@ public class PdfReportController {
             headers.setContentDisposition(ContentDisposition.inline().filename("report.pdf").build());
 
             return ResponseEntity.ok().headers(headers).body(pdfBytes);
-
 //-------------------------------------------------------------debug--------------------------------------------------
         } catch (JRException e) {
             e.printStackTrace();

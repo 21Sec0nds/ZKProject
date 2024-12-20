@@ -20,11 +20,9 @@ public class TipoEstadoLiquiService {
     public TipoEstadoLiqui getTipoEstadoLiquiById(Integer id) {
         return tipoEstadoLiquiRepository.findById(id).orElse(null);
     }
-
     public TipoEstadoLiqui saveTipoEstadoLiqui(TipoEstadoLiqui tipoEstadoLiqui) {
         return tipoEstadoLiquiRepository.save(tipoEstadoLiqui);
     }
-
     public void deleteTipoEstadoLiqui(Integer id) {
         tipoEstadoLiquiRepository.deleteById(id);
     }
