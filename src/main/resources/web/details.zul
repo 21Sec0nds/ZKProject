@@ -5,6 +5,7 @@
             viewModel="@id('vm') @init('com.example.grep.viewModels.DetailVM')">
 
         <vlayout spacing="15px" style="padding:20px; width: 100%;">
+
             <hlayout spacing="20px">
                 <vlayout spacing="5px">
                     <label value="ID" />
@@ -43,8 +44,8 @@
                     <label value="Presupuesto" />
                     <textbox value="@bind(vm.presupuesto.presupuesto)" width="200px" placeholder="@bind(vm.presupuesto.presupuesto)"/>
                 </vlayout>
-
             </hlayout>
+
             <hlayout spacing="20px">
                 <vlayout spacing="5px">
                     <button label="Guardar" onClick="@command('guardarUsuario')" style="margin-top: 20px;" />
@@ -52,7 +53,7 @@
             </hlayout>
         </vlayout>
 
-        <!-- Existing Gastos Table -->
+
         <label value="Gastos Details" style="font-weight: bold; margin: 20px 0 10px;" />
         <grid width="100%" emptyMessage="No hay gastos disponibles">
             <columns>
@@ -74,12 +75,16 @@
                     <label value="${each.importe}" />
                     <label value="${each.descripcion}" />
                 </row>
-
             </rows>
-
         </grid>
 
-        <label value="añadir gastos" style="font-weight: bold; margin: 20px 0 10px;" />
+
+        <hlayout spacing="15px" style="margin-top: 20px;">
+            <button label="Generar PDF" onClick="@command('FindById')" style="padding: 5px 20px;" />
+        </hlayout>
+
+
+        <label value="Añadir gastos" style="font-weight: bold; margin: 20px 0 10px;" />
         <hbox>
             <textbox value="@bind(vm.nombreDepartamento2)" placeholder="Departamento" />
             <textbox value="@bind(vm.nombreFinalidad2)" placeholder="Finalidad" />

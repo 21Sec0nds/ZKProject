@@ -5,6 +5,7 @@ import com.example.grep.services.*;
 import org.hibernate.tool.schema.spi.Exporter;
 import org.zkoss.bind.annotation.*;
 import org.zkoss.util.media.AMedia;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.Filedownload;
 import org.zkoss.zul.Messagebox;
@@ -214,6 +215,11 @@ public class DetailVM {
         setNombreDepartamento2("");
         setNombreFinalidad2(null);
         setAnio(0);
+    }
+    @Command
+    @NotifyChange({"Id"})
+    public void FindById() {
+        Executions.sendRedirect("/api/pdf/generate?Presupuesto=" + presupuesto.getIdPresupuesto());
     }
 
 
