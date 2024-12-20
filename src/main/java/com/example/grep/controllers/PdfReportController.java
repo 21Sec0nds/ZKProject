@@ -25,9 +25,7 @@ public class PdfReportController {
     @Autowired
     private PresupuestosService presupuestosService;
     @GetMapping("/generate")
-    public ResponseEntity<byte[]> generatePdf(@RequestParam String title,
-                                              @RequestParam double minSalary,
-                                              @RequestParam int Presupuesto) {
+    public ResponseEntity<byte[]> generatePdf(@RequestParam int Presupuesto) {
         try {
             InputStream inputStream = getClass().getResourceAsStream("/web/report.jrxml");
             if (inputStream == null) {
@@ -37,10 +35,7 @@ public class PdfReportController {
             JasperReport jasperReport = JasperCompileManager.compileReport(inputStream);
 
             Map<String, Object> parameters = new HashMap<>();
-            parameters.put("title", title);
-            parameters.put("minSalary", minSalary);
-            parameters.put("Presupuesto", Presupuesto);
-
+            parameters.put("idPresupuesto", Presupuesto);
             Optional<Presupuestos> optionalPresupuesto = presupuestosService.getAllPresupuestos().stream()
                     .filter(p -> p.getIdPresupuesto() != null && p.getIdPresupuesto() == Presupuesto)
                     .findFirst();
@@ -53,6 +48,14 @@ public class PdfReportController {
             Presupuestos presupuesto = optionalPresupuesto.get();
             double targetImporte = presupuesto.getPresupuesto();
             int targetDepartamentoId = presupuesto.getIdDepartamento().getIdDepartamento();
+            parameters.put("anioPresupuesto", presupuesto.getAnio());
+            parameters.put("NombreDepartamento", presupuesto.getIdDepartamento().getNombreDepartamento());
+            parameters.put("NombreFinalidad", presupuesto.getIdFinalidad().getNombreFinalidad());
+            parameters.put("Mes", gastosService.getGastos(presupuesto.getIdPresupuesto()).getMes());
+            parameters.put("Importe", gastosService.getGastos(presupuesto.getIdPresupuesto()).getImporte());
+            parameters.put("Description", gastosService.getGastos(presupuesto.getIdPresupuesto()).getDescripcion());
+
+
 
 //----------------------------------------------Get data----------------------------------------------------------------
 //          -------------------------------------------Gastos------------------------------------------
@@ -86,18 +89,11 @@ public class PdfReportController {
             }
 //--------------------------------------------------------Export to pdf------------------------------------------------------------
             JRDataSource dataSource1 = new JRBeanCollectionDataSource(filteredGastos);
-            List<PresupuestosDTO> presupuestosList = presupuestogetall != null ?
-                    Collections.singletonList(presupuestogetall) : new ArrayList<>();
-
-            JRDataSource dataSource2 = new JRBeanCollectionDataSource(presupuestosList);
-
             JasperPrint jasperPrint;
             if (!filteredGastos.isEmpty()) {
-
                 jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JRBeanCollectionDataSource(filteredGastos));
             } else {
-
-                jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource2);
+                jasperPrint = JasperFillManager.fillReport(jasperReport, parameters);
             }
 
             ByteArrayOutputStream pdfStream = new ByteArrayOutputStream();
