@@ -86,10 +86,7 @@
 
         <label value="Añadir gastos" style="font-weight: bold; margin: 20px 0 10px;" />
         <hbox>
-            <textbox value="@bind(vm.nombreDepartamento2)" placeholder="Departamento" />
-            <textbox value="@bind(vm.nombreFinalidad2)" placeholder="Finalidad" />
             <intbox value="@bind(vm.mes)" placeholder="Mes" />
-            <intbox value="@bind(vm.anio)" placeholder="Año" />
             <doublebox value="@bind(vm.importe)" placeholder="Importe" />
             <textbox value="@bind(vm.description)" placeholder="Descripción" />
             <button label="Añadir Gasto" onClick="@command('addGasto')" />

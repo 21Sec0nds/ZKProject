@@ -171,34 +171,24 @@ public class DetailVM {
         presupuestosService.saveAnio(presupuesto);
     }
     @Command
-    @NotifyChange({"detalleGastos", "mes", "anio", "importe", "description", "nombreDepartamento2", "finalidades"})
+    @NotifyChange({"mes", "importe", "description"})
     public void addGasto() {
         if (mes <= 0 || importe <= 0 || description == null || description.trim().isEmpty()) {
             Messagebox.show("Por favor, complete todos los campos del gasto.", "Error", Messagebox.OK, Messagebox.ERROR);
             return;
         }
 
-        Departamentos departamento = departamentoService.getDepartamentoByNombre(nombreDepartamento2);
-        if (departamento == null) {
-            departamento = new Departamentos();
-            departamento.setNombreDepartamento(nombreDepartamento2);
-            saveDepartamentos(departamento);
-        }
+        Departamentos departamento = departamentoService.getDepartamentos(presupuesto.getIdDepartamento().getIdDepartamento());
 
-        Finalidades finalidades1 =  finalidadesService.getFinalidadByNombre(nombreFinalidad2);
-        if (finalidades1 == null) {
-            finalidades1 = new Finalidades();
-            finalidades1.setNombreFinalidad(nombreFinalidad2);
-            saveFinalidades(finalidades1);
-        }
+        Finalidades finalidades2 = finalidadesService.getFinalidades(presupuesto.getIdFinalidad().getIdFinalidad());
 
         Gastos gasto = new Gastos();
         gasto.setMes(mes);
-        gasto.setAnio(anio);
+        gasto.setAnio(presupuesto.getAnio());
         gasto.setImporte(importe);
         gasto.setDescripcion(description);
         gasto.setDepartamento(departamento);
-        gasto.setFinalidad(finalidades1);
+        gasto.setFinalidad(finalidades2);
 
         saveGasto(gasto);
         detalleGastos.add(gasto);
@@ -219,6 +209,4 @@ public class DetailVM {
     public void FindById() {
         Executions.sendRedirect("/api/pdf/generate?Presupuesto=" + presupuesto.getIdPresupuesto());
     }
-
-
 }
