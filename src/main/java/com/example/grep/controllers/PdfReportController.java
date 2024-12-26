@@ -58,10 +58,12 @@ public class PdfReportController {
 
 
 //----------------------------------------------Get data----------------------------------------------------------------
-//          -------------------------------------------Gastos------------------------------------------
-            List<DetalleGastoDTO> filteredGastos = gastosService.getAllGastos().stream()
-                    .filter(gasto -> gasto.getImporte() == targetImporte &&
-                            gasto.getDepartamento().getIdDepartamento() == targetDepartamentoId)
+//-------------------------------------------Gastos------------------------------------------
+            List<DetalleGastoDTO> filteredGastos = gastosService.getGastosByFilters(
+                            presupuesto.getIdDepartamento() != null ? presupuesto.getIdDepartamento().getIdDepartamento() : null,
+                            presupuesto.getIdFinalidad() != null ? presupuesto.getIdFinalidad().getIdFinalidad() : null,
+                            presupuesto.getAnio()
+                    ).stream()
                     .map(gasto -> new DetalleGastoDTO(
                             gasto.getIdGasto(),
                             String.valueOf(gasto.getDepartamento().getIdDepartamento()),
@@ -70,7 +72,7 @@ public class PdfReportController {
                             gasto.getAnio(),
                             gasto.getImporte(),
                             gasto.getDescripcion()
-                            ))
+                    ))
                     .collect(Collectors.toList());
 //          --------------------------------------------Presupuestos-----------------------------------
             PresupuestosDTO presupuestogetall = presupuestosService.getAllPresupuestos().stream()
