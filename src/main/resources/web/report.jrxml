@@ -2,7 +2,6 @@
               name="ExpenseReport"
               pageWidth="595" pageHeight="842" columnWidth="540" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 
-
     <parameter name="idPresupuesto" class="java.lang.Integer"/>
     <parameter name="anioPresupuesto" class="java.lang.Integer"/>
     <parameter name="NombreDepartamento" class="java.lang.String"/>
@@ -11,7 +10,6 @@
     <parameter name="Importe" class="java.lang.Double"/>
     <parameter name="Description" class="java.lang.String"/>
 
-    <!-- Define fields -->
     <field name="idGasto" class="java.lang.Integer"/>
     <field name="departamentoId" class="java.lang.String"/>
     <field name="finalidad" class="java.lang.String"/>
@@ -19,211 +17,166 @@
     <field name="anio" class="java.lang.Integer"/>
     <field name="importe" class="java.lang.Double"/>
     <field name="descripcion" class="java.lang.String"/>
-    <!-- Presupuesto fields -->
 
 
-    <!-- Title band -->
-    <title>
-        <band height="80">
-            <staticText>
-                <reportElement x="0" y="0" width="515" height="40"/>
-                <textElement>
-                    <font size="18" isBold="true"/>
-                </textElement>
-                <text><![CDATA[PRESUPUESTOS]]></text>
-            </staticText>
-        </band>
-    </title>
+    <group name="PresupuestoGroup">
+        <groupExpression><![CDATA[$P{idPresupuesto}]]></groupExpression>
+        <groupHeader>
+            <band height="120">
 
-    <!-- Detail band -->
+                <staticText>
+                    <reportElement x="0" y="0" width="540" height="30"/>
+                    <textElement textAlignment="Center">
+                        <font size="16" isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[Presupuestos]]></text>
+                </staticText>
+
+                <staticText>
+                    <reportElement x="0" y="40" width="100" height="20"/>
+                    <textElement>
+                        <font size="12" isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[ID Presupuesto]]></text>
+                </staticText>
+
+                <textField>
+                    <reportElement x="100" y="40" width="100" height="20"/>
+                    <textFieldExpression><![CDATA[$P{idPresupuesto}]]></textFieldExpression>
+                </textField>
+
+                <staticText>
+                    <reportElement x="0" y="60" width="100" height="20"/>
+                    <textElement>
+                        <font size="12" isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[NombreDepartamento]]></text>
+                </staticText>
+                <textField>
+                    <reportElement x="100" y="60" width="200" height="20"/>
+                    <textFieldExpression><![CDATA[$P{NombreDepartamento}]]></textFieldExpression>
+                </textField>
+
+                <staticText>
+                    <reportElement x="0" y="80" width="100" height="20"/>
+                    <textElement>
+                        <font size="12" isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[Finalidad]]></text>
+                </staticText>
+
+                <textField>
+                    <reportElement x="100" y="80" width="200" height="20"/>
+                    <textFieldExpression><![CDATA[$P{NombreFinalidad}]]></textFieldExpression>
+                </textField>
+
+                <staticText>
+                    <reportElement x="0" y="100" width="100" height="20"/>
+                    <textElement>
+                        <font size="12" isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[Año]]></text>
+                </staticText>
+                <textField>
+                    <reportElement x="100" y="100" width="200" height="20"/>
+                    <textFieldExpression><![CDATA[$P{anioPresupuesto}]]></textFieldExpression>
+                </textField>
+            </band>
+        </groupHeader>
+    </group>
+    <group name="Text">
+        <groupHeader>
+            <band height="120">
+                <staticText>
+                    <reportElement x="0" y="50" width="100" height="20"/>
+                    <textElement>
+                        <font size="15" isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[Gastos]]></text>
+                </staticText>
+
+                <staticText>
+                    <reportElement x="-30" y="100" width="100" height="20"/>
+                    <textElement textAlignment="Center">
+                        <font size="12" isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[ID Gasto]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="70" y="100" width="100" height="20"/>
+                    <textElement textAlignment="Center">
+                        <font size="12" isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[Departamento ID]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="160" y="100" width="100" height="20"/>
+                    <textElement textAlignment="Center">
+                        <font size="12" isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[Finalidad]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="250" y="100" width="100" height="20"/>
+                    <textElement textAlignment="Center">
+                        <font size="12" isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[Mes]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="310" y="100" width="100" height="20"/>
+                    <textElement textAlignment="Center">
+                        <font size="12" isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[Año]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="380" y="100" width="100" height="20"/>
+                    <textElement textAlignment="Center">
+                        <font size="12" isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[Importe]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="470" y="100" width="100" height="20"/>
+                    <textElement textAlignment="Center">
+                        <font size="12" isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[Descripción]]></text>
+                </staticText>
+            </band>
+        </groupHeader>
+    </group>
     <detail>
-        <band height="120">
-            <!-- Presupuesto section -->
-            <!-- Labels for Presupuesto -->
-            <staticText>
-                <reportElement x="0" y="-50" width="100" height="20"/>
-                <textElement>
-                    <font size="12" isBold="true"/>
-                </textElement>
-                <text><![CDATA[ID Presupuesto]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="100" y="-50" width="100" height="20"/>
-                <textElement>
-                    <font size="12" isBold="true"/>
-                </textElement>
-                <text><![CDATA[NombreDepartamento]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="200" y="-50" width="100" height="20"/>
-                <textElement>
-                    <font size="12" isBold="true"/>
-                </textElement>
-                <text><![CDATA[NombreFinalidad]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="320" y="-50" width="100" height="20"/>
-                <textElement>
-                    <font size="12" isBold="true"/>
-                </textElement>
-                <text><![CDATA[Anio]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="360" y="-50" width="100" height="20"/>
-                <textElement>
-                    <font size="12" isBold="true"/>
-                </textElement>
-                <text><![CDATA[Mes]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="400" y="-50" width="100" height="20"/>
-                <textElement>
-                    <font size="12" isBold="true"/>
-                </textElement>
-                <text><![CDATA[Importe]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="460" y="-50" width="100" height="20"/>
-                <textElement>
-                    <font size="12" isBold="true"/>
-                </textElement>
-                <text><![CDATA[Descripcion]]></text>
-            </staticText>
-
-            <!-- Data fields for Presupuesto -->
+        <band height="30">
             <textField>
-                <reportElement x="0" y="-30" width="100" height="20"/>
-                <textFieldExpression><![CDATA[$P{idPresupuesto}]]></textFieldExpression>
-            </textField>
-            <textField>
-                <reportElement x="100" y="-30" width="100" height="20"/>
-                <textFieldExpression><![CDATA[$P{NombreDepartamento}]]></textFieldExpression>
-            </textField>
-            <textField>
-                <reportElement x="200" y="-30" width="100" height="20"/>
-                <textFieldExpression><![CDATA[$P{NombreFinalidad}]]></textFieldExpression>
-            </textField>
-            <textField>
-                <reportElement x="320" y="-30" width="100" height="20"/>
-                <textFieldExpression><![CDATA[$P{anioPresupuesto}]]></textFieldExpression>
-            </textField>
-            <textField>
-                <reportElement x="360" y="-30" width="100" height="20"/>
-                <textFieldExpression><![CDATA[$P{Mes}]]></textFieldExpression>
-            </textField>
-            <textField>
-                <reportElement x="400" y="-30" width="100" height="20"/>
-                <textFieldExpression><![CDATA[$P{Importe}]]></textFieldExpression>
-            </textField>
-            <textField>
-                <reportElement x="460" y="-30" width="100" height="20"/>
-                <textFieldExpression><![CDATA[$P{Description}]]></textFieldExpression>
-            </textField>
-
-            <!-- Gasto section (only if exists) -->
-            <staticText>
-                <reportElement x="0" y="15" width="515" height="40"/>
-                <textElement>
-                    <font size="18" isBold="true"/>
-                </textElement>
-                <text><![CDATA[GASTOS]]></text>
-            </staticText>
-
-            <!-- Labels for Gasto -->
-            <staticText>
-                <reportElement x="0" y="35" width="100" height="20"/>
-                <textElement>
-                    <font size="12" isBold="true"/>
-                </textElement>
-                <text><![CDATA[ID Gasto]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="100" y="35" width="100" height="20"/>
-                <textElement>
-                    <font size="12" isBold="true"/>
-                </textElement>
-                <text><![CDATA[Departamento]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="200" y="35" width="100" height="20"/>
-                <textElement>
-                    <font size="12" isBold="true"/>
-                </textElement>
-                <text><![CDATA[finalidad]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="330" y="35" width="100" height="20"/>
-                <textElement>
-                    <font size="12" isBold="true"/>
-                </textElement>
-                <text><![CDATA[mes]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="400" y="35" width="100" height="20"/>
-                <textElement>
-                    <font size="12" isBold="true"/>
-                </textElement>
-                <text><![CDATA[anio]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="500" y="35" width="100" height="20"/>
-                <textElement>
-                    <font size="12" isBold="true"/>
-                </textElement>
-                <text><![CDATA[importe]]></text>
-            </staticText>
-            <staticText>
-                <reportElement x="600" y="35" width="100" height="20"/>
-                <textElement>
-                    <font size="12" isBold="true"/>
-                </textElement>
-                <text><![CDATA[descripcion]]></text>
-            </staticText>
-
-            <!-- Data fields for Gasto -->
-            <textField>
-                <reportElement x="0" y="50" width="100" height="20"/>
+                <reportElement x="0" y="0" width="50" height="20"/>
                 <textFieldExpression><![CDATA[$F{idGasto}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="100" y="50" width="100" height="20"/>
+                <reportElement x="75" y="0" width="100" height="20"/>
                 <textFieldExpression><![CDATA[$F{departamentoId}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="200" y="50" width="100" height="20"/>
+                <reportElement x="185" y="0" width="100" height="20"/>
                 <textFieldExpression><![CDATA[$F{finalidad}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="330" y="50" width="100" height="20"/>
+                <reportElement x="290" y="0" width="100" height="20"/>
                 <textFieldExpression><![CDATA[$F{mes}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="400" y="50" width="100" height="20"/>
+                <reportElement x="350" y="0" width="100" height="20"/>
                 <textFieldExpression><![CDATA[$F{anio}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="500" y="50" width="100" height="20"/>
+                <reportElement x="410" y="0" width="100" height="20"/>
                 <textFieldExpression><![CDATA[$F{importe}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="600" y="50" width="100" height="20"/>
+                <reportElement x="490" y="0" width="100" height="20"/>
                 <textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
             </textField>
-
         </band>
     </detail>
-
-    <!-- Page Footer, for example -->
-    <pageFooter>
-        <band height="30">
-            <staticText>
-                <reportElement x="0" y="0" width="515" height="20"/>
-                <textElement>
-                    <font size="10"/>
-                </textElement>
-                <text><![CDATA[Page Footer]]></text>
-            </staticText>
-        </band>
-    </pageFooter>
-
 </jasperReport>

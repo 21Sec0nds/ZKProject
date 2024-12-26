@@ -58,7 +58,7 @@
         <grid width="100%" emptyMessage="No hay gastos disponibles">
             <columns>
                 <column label="ID Gasto" />
-                <column label="Nombre de Departamento" />
+                <column label="ID Departamento" />
                 <column label="Finalidad" />
                 <column label="Mes" />
                 <column label="Año" />
