@@ -78,11 +78,9 @@
             </rows>
         </grid>
 
-
         <hlayout spacing="15px" style="margin-top: 20px;">
             <button label="Generar PDF" onClick="@command('FindById')" style="padding: 5px 20px;" />
         </hlayout>
-
 
         <label value="Añadir gastos" style="font-weight: bold; margin: 20px 0 10px;" />
         <hbox>

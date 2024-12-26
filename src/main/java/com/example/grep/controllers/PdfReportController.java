@@ -56,7 +56,6 @@ public class PdfReportController {
             parameters.put("Description", gastosService.getGastos(presupuesto.getIdPresupuesto()).getDescripcion());
 
 
-
 //----------------------------------------------Get data----------------------------------------------------------------
 //-------------------------------------------Gastos------------------------------------------
             List<DetalleGastoDTO> filteredGastos = gastosService.getGastosByFilters(
@@ -97,7 +96,6 @@ public class PdfReportController {
             } else {
                 jasperPrint = JasperFillManager.fillReport(jasperReport, parameters);
             }
-
             ByteArrayOutputStream pdfStream = new ByteArrayOutputStream();
             JRPdfExporter exporter = new JRPdfExporter();
             exporter.setExporterInput(new SimpleExporterInput(jasperPrint));

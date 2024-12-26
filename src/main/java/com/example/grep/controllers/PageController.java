@@ -8,32 +8,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/")
-public class PageController {
 
+public class PageController {
 
     @GetMapping("/")
     public String homepage() {
-        return "redirect:/usuarios";
-    }
-
-    @GetMapping("/departamentos")
-    public String departamentos() {
-        return "departamentos";
-    }
-
-    @GetMapping("/finalidades")
-    public String finalidades() {
-        return "finalidades";
-    }
-
-    @GetMapping("/gastos")
-    public String gastos() {
-        return "gastos";
-    }
-
-    @GetMapping("/liquidaciones")
-    public String liquidaciones() {
-        return "liquidaciones";
+        return "redirect:/presupuestos";
     }
 
     @GetMapping("/presupuestos")
@@ -45,16 +25,6 @@ public class PageController {
     public String presupuestosDetails(@RequestParam("presupuestoId") int presupuestoId, Model model) {
         model.addAttribute("presupuestoId", presupuestoId);
         return "details";
-    }
-
-    @GetMapping("/tipoliquid")
-    public String tipoEstadoLiqui() {
-        return "tipoliquid";
-    }
-
-    @GetMapping("/usuarios")
-    public String usuarios() {
-        return "usuarios";
     }
 
 }

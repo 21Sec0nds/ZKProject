@@ -2,7 +2,6 @@
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <window title="Presupuestos" border="normal" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('com.example.grep.viewModels.PresupuestosVM')">
 
-        <!-- Lista de Presupuestos -->
         <listbox width="100%" rows="8" emptyMessage="No hay presupuestos disponibles" model="@bind(vm.listaPresupuestos)">
         <listhead>
                 <listheader label="ID"/>
@@ -20,35 +19,6 @@
             </template>
         </listbox>
 
-        <hbox style="margin-top: 20px">
-            <!-- Detalles de Departamento -->
-            <listbox width="100%" rows="1" emptyMessage="No hay departamentos relacionados" model="@bind(vm.detalleDepartamentos)">
-                <listhead>
-                    <listheader label="ID Departamento" />
-                    <listheader label="Nombre Departamento" />
-                </listhead>
-                <template name="model">
-                    <listitem>
-                        <listcell label="@bind(each.idDepartamento.idDepartamento)" />
-                        <listcell label="@bind(each.idDepartamento.nombreDepartamento)" />
-                    </listitem>
-                </template>
-            </listbox>
-
-            <!-- Detalles de Finalidad -->
-            <listbox width="100%" rows="1" emptyMessage="No hay finalidades relacionadas" model="@bind(vm.detalleFinalidades)">
-                <listhead>
-                    <listheader label="ID Finalidad" />
-                    <listheader label="Nombre Finalidad" />
-                </listhead>
-                <template name="model">
-                    <listitem>
-                        <listcell label="@bind(each.idFinalidad.idFinalidad)" />
-                        <listcell label="@bind(each.idFinalidad.nombreFinalidad)" />
-                    </listitem>
-                </template>
-            </listbox>
-        </hbox>
-
     </window>
+
 </zk>

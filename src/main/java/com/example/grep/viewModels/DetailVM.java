@@ -171,7 +171,7 @@ public class DetailVM {
         presupuestosService.saveAnio(presupuesto);
     }
     @Command
-    @NotifyChange({"mes", "importe", "description"})
+    @NotifyChange({"mes", "importe", "description", "detalleGastos"})
     public void addGasto() {
         if (mes <= 0 || importe <= 0 || description == null || description.trim().isEmpty()) {
             Messagebox.show("Por favor, complete todos los campos del gasto.", "Error", Messagebox.OK, Messagebox.ERROR);
@@ -209,4 +209,6 @@ public class DetailVM {
     public void FindById() {
         Executions.sendRedirect("/api/pdf/generate?Presupuesto=" + presupuesto.getIdPresupuesto());
     }
+
+
 }
