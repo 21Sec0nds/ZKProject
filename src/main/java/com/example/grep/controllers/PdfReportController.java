@@ -33,7 +33,7 @@ public class PdfReportController {
             }
 
             JasperReport jasperReport = JasperCompileManager.compileReport(inputStream);
-
+//---------------------------------------------------Sort of validation-----------------------------------------
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("idPresupuesto", Presupuesto);
             Optional<Presupuestos> optionalPresupuesto = presupuestosService.getAllPresupuestos().stream()
@@ -45,6 +45,7 @@ public class PdfReportController {
                         .body(("No Presupuesto found with idFinalidad: " + Presupuesto).getBytes());
             }
 
+            //---------------------------------------------------Parameters determinants-----------------------------------------            //---------------------------------------------------Parameters determinants-----------------------------------------
             Presupuestos presupuesto = optionalPresupuesto.get();
             double targetImporte = presupuesto.getPresupuesto();
             int targetDepartamentoId = presupuesto.getIdDepartamento().getIdDepartamento();

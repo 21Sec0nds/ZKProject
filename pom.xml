@@ -4,7 +4,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.4.0</version>
-		<relativePath/>
+<!--		<relativePath></relativePath>-->
 		<!--  lookup parent from repository  -->
 	</parent>
 	<groupId>com.example</groupId>
@@ -37,13 +37,6 @@
 			<version>${spring.boot.version}</version>
 		</dependency>
 
-		<!-- Spring Data JPA -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-			<version>${spring.boot.version}</version>
-		</dependency>
-
 		<!--		Sqlite	-->
 		<dependency>
 			<groupId>org.xerial</groupId>
@@ -65,13 +58,6 @@
 			<groupId>org.zkoss.zk</groupId>
 			<artifactId>zkplus</artifactId>
 			<version>${zk.version}</version>
-		</dependency>
-
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<version>3.4.0</version>
 		</dependency>
 
 
@@ -133,5 +119,25 @@
 			<id>ZK CE</id>
 			<url>https://mavensync.zkoss.org/maven2</url>
 		</repository>
+
+		<repository>
+			<id>local</id>
+			<url>file://bin</url>
+		</repository>
 	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>some-repo</id>
+			<name>Some Repository</name>
+			<url>file://bin</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
 </project>

@@ -22,18 +22,19 @@ public class FinalidadesService {
         return finalidadesRepository.findById(id).orElse(null);
     }
 
+
     public Finalidades saveFinalidades(Finalidades finalidades) {
         return finalidadesRepository.save(finalidades);
     }
+
 
     public void deleteFinalidades(String id) {
         finalidadesRepository.deleteById(id);
     }
 
+
     public Finalidades getFinalidadByNombre(String nombreFinalidad) {
         return finalidadesRepository.findByNombreFinalidad(nombreFinalidad);
     }
-
-
 
 }

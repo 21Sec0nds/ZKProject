@@ -17,17 +17,17 @@ public class Usuarios {
     @Column(name = "PASSWORD", nullable = true)
     private String password;
 
-    // Constructor con parámetros
+
     public Usuarios(String idUsuario, String nombreUsuario, String password) {
         this.id_usuario = idUsuario;
         this.nombre_usuario = nombreUsuario;
         this.password = password;
     }
 
-    // Constructor vacío
+
     public Usuarios() {}
 
-    // Getters y setters
+
     public String getIdUsuario() { return id_usuario; }
     public void setIdUsuario(String idUsuario) { this.id_usuario = idUsuario; }
 
