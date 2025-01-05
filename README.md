@@ -23,7 +23,7 @@ This project has different pages displaying data from different databases and ea
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/ZKframework_springboot.git
+   git clone https://github.com/5Sevenx/ZKframework_springboot.git
    cd ZKframework_springboot
 
 ---
