@@ -13,7 +13,7 @@ public class PageController {
 
     @GetMapping("/")
     public String homepage() {
-        return "redirect:/presupuestos";
+        return "redirect:/presupuestos/login";
     }
 
     @GetMapping("/presupuestos")
@@ -27,4 +27,8 @@ public class PageController {
         return "details";
     }
 
+    @GetMapping("/presupuestos/login")
+    public String presupuestosLogin() {
+        return "login";
+    }
 }

@@ -2,6 +2,7 @@
 <zk xmlns="http://www.zkoss.org/2005/zul">
     <window title="Presupuestos" border="normal" apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('com.example.grep.viewModels.PresupuestosVM')">
 
+
         <listbox width="100%" rows="8" emptyMessage="No hay presupuestos disponibles" model="@bind(vm.listaPresupuestos)">
         <listhead>
                 <listheader label="ID"/>

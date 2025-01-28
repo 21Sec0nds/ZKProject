@@ -22,6 +22,7 @@ public class UsuariosController {
         return usuariosService.getUsuarioById(id);
     }
 
+
     @PostMapping("/save")
     public Usuarios saveUsuario(@RequestBody Usuarios usuario) {
         return usuariosService.saveUsuario(usuario);

@@ -1,0 +1,27 @@
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<zk xmlns="http://www.zkoss.org/2005/zul">
+    <window title="Login Page" border="normal"
+            apply="org.zkoss.bind.BindComposer"
+            viewModel="@id('vm') @init('com.example.grep.viewModels.LoginVM')">
+
+        <vlayout spacing="15px" style="padding:20px;">
+            <label value="Login Page" style="font-size: 20px; font-weight: bold; text-align: center;" />
+
+            <hlayout spacing="10px">
+                <label value="Username:" style="font-weight: bold;" />
+                <textbox value="@bind(vm.username)" width="250px" placeholder="Enter your username" />
+            </hlayout>
+
+            <hlayout spacing="10px">
+                <label value="Password:" style="font-weight: bold;" />
+                <textbox value="@bind(vm.password)" type="password" width="250px" placeholder="Enter your password" />
+            </hlayout>
+
+            <hlayout spacing="10px" style="justify-content: center;">
+                <button label="Login" onClick="@command('login')" style="padding: 5px 20px;" />
+            </hlayout>
+
+            <label value="@bind(vm.message)" style="color: red; text-align: center;" />
+        </vlayout>
+    </window>
+</zk>

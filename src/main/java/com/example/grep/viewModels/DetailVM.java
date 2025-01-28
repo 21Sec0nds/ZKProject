@@ -6,6 +6,7 @@ import org.hibernate.tool.schema.spi.Exporter;
 import org.zkoss.bind.annotation.*;
 import org.zkoss.util.media.AMedia;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.Filedownload;
 import org.zkoss.zul.Messagebox;
@@ -18,11 +19,24 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
-
 public class DetailVM {
+
+    // This method runs once after page load
+    @AfterCompose
+    public void init1() {
+        // If the user is already logged in, redirect them to the main page
+        if (isUserLoggedIn()) {
+            // Do nothing if user is logged in
+        } else{
+            Executions.sendRedirect("/presupuestos/login");
+        }
+    }
+
+    // Helper method to check if the user is logged in
+    private boolean isUserLoggedIn() {
+        Session session = Executions.getCurrent().getSession();
+        return session.getAttribute("LoggedInUser") != null;
+    }
     //------------------------------------------------- Services and Repositories ---------------------------------------
     @WireVariable
     private PresupuestosService presupuestosService;
@@ -211,4 +225,12 @@ public class DetailVM {
     }
 
 
+    //Security
+    @Command
+    public void checkLogin() {
+        Session session = Executions.getCurrent().getSession();
+        if (session.getAttribute("LoggedInUser") == null) {
+            Executions.sendRedirect("/login.zul");
+        }
+    }
 }

@@ -8,6 +8,7 @@ import com.example.grep.services.GastosService;
 import com.example.grep.services.PresupuestosService;
 import org.zkoss.bind.annotation.*;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.ListModelList;
 
@@ -17,6 +18,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class PresupuestosVM {
+
+    @AfterCompose
+    public void init2() {
+        // If the user is already logged in, redirect them to the main page
+        if (isUserLoggedIn()) {
+            // Do nothing if user is logged in
+        } else{
+            Executions.sendRedirect("/presupuestos/login");
+        }
+    }
+
+    // Helper method to check if the user is logged in
+    private boolean isUserLoggedIn() {
+        Session session = Executions.getCurrent().getSession();
+        return session.getAttribute("LoggedInUser") != null;
+    }
 
     @WireVariable
     private PresupuestosService presupuestosService;
@@ -136,5 +153,14 @@ public class PresupuestosVM {
     }
     public void setSelectedItem(Presupuestos selectedItem) {
         this.selectedItem = selectedItem;
+    }
+
+    //Security
+    @Command
+    public void checkLogin() {
+        Session session = Executions.getCurrent().getSession();
+        if (session.getAttribute("LoggedInUser") == null) {
+            Executions.sendRedirect("/login.zul");
+        }
     }
 }

@@ -2,8 +2,6 @@ package com.example.grep.models;
 
 import jakarta.persistence.*;
 
-import java.io.Serializable;
-
 @Entity
 @Table(name = "USUARIOS")
 public class Usuarios {
@@ -12,7 +10,7 @@ public class Usuarios {
     private String id_usuario;
 
     @Column(name = "NOMBRE_USUARIO", nullable = false)
-    private String nombre_usuario;
+    private String nombreUsuario;
 
     @Column(name = "PASSWORD", nullable = true)
     private String password;
@@ -20,7 +18,7 @@ public class Usuarios {
 
     public Usuarios(String idUsuario, String nombreUsuario, String password) {
         this.id_usuario = idUsuario;
-        this.nombre_usuario = nombreUsuario;
+        this.nombreUsuario = nombreUsuario;
         this.password = password;
     }
 
@@ -31,8 +29,8 @@ public class Usuarios {
     public String getIdUsuario() { return id_usuario; }
     public void setIdUsuario(String idUsuario) { this.id_usuario = idUsuario; }
 
-    public String getNombreUsuario() { return nombre_usuario; }
-    public void setNombreUsuario(String nombreUsuario) { this.nombre_usuario = nombreUsuario; }
+    public String getNombreUsuario() { return nombreUsuario; }
+    public void setNombreUsuario(String nombreUsuario) { this.nombreUsuario = nombreUsuario; }
 
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }

@@ -20,6 +20,8 @@ public class UsuariosService  {
         return usuariosRepository.findById(id).orElse(null);
     }
 
+    public Usuarios getUsuarioByname(String name){ return  usuariosRepository.findByNombreUsuario(name);}
+
     public Usuarios saveUsuario(Usuarios usuario) {
         return usuariosRepository.save(usuario);
     }
