@@ -8,12 +8,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/")
-
 public class PageController {
 
     @GetMapping("/")
     public String homepage() {
-        return "redirect:/presupuestos/login";
+        return "redirect:/presupuestos";
     }
 
     @GetMapping("/presupuestos")

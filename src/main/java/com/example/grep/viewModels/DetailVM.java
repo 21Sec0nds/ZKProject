@@ -22,7 +22,7 @@ import java.util.List;
 public class DetailVM {
 
     // This method runs once after page load
-    @AfterCompose
+   /* @AfterCompose
     public void init1() {
         // If the user is already logged in, redirect them to the main page
         if (isUserLoggedIn()) {
@@ -36,7 +36,7 @@ public class DetailVM {
     private boolean isUserLoggedIn() {
         Session session = Executions.getCurrent().getSession();
         return session.getAttribute("LoggedInUser") != null;
-    }
+    }*/
     //------------------------------------------------- Services and Repositories ---------------------------------------
     @WireVariable
     private PresupuestosService presupuestosService;

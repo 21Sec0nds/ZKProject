@@ -19,7 +19,7 @@ public class LoginVM {
     private String message;
 
     // This method runs once after page load
-    @AfterCompose
+    /*@AfterCompose
     public void init0() {
         // If the user is already logged in, redirect them to the main page
         if (isUserLoggedIn()) {
@@ -31,7 +31,7 @@ public class LoginVM {
     private boolean isUserLoggedIn() {
         Session session = Executions.getCurrent().getSession();
         return session.getAttribute("LoggedInUser") != null;
-    }
+    }*/
 
     public String getUsername() {
         return username;

@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 public class PresupuestosVM {
 
-    @AfterCompose
+    /*@AfterCompose
     public void init2() {
         // If the user is already logged in, redirect them to the main page
         if (isUserLoggedIn()) {
@@ -33,7 +33,7 @@ public class PresupuestosVM {
     private boolean isUserLoggedIn() {
         Session session = Executions.getCurrent().getSession();
         return session.getAttribute("LoggedInUser") != null;
-    }
+    }*/
 
     @WireVariable
     private PresupuestosService presupuestosService;
